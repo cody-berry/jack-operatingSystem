@@ -1,4 +1,16 @@
-                                                                               .
+                                                                              .
+
+05:21 pm Saturday, December 17, 2022
+[1721]→	⊼₂ Unit 6.3: Mathematical Operations 
+multiply():
+In Unit 6.2.
+
+division():
+The naive way is to count how many times we can add b to itself to get a, with a/b. The correct way is with long division. The one that we're going to use in our operating system is the following: Take 100/7. We don't know the answer, but we know it's 50*2/7. We know that's 25*2*2/7. We know that's about 12*2*2*2/7. We know that's 6*2*2*2*2/7. And you get the picture.
+
+sqrt():
+Binary search! Use x*x and see if it is less or greater than the answer.
+
 
 05:28 pm Monday, December 12, 2022
 [1728]→	⊼₂ Unit 6.2: Efficiency Matters
