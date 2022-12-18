@@ -1,0 +1,38 @@
+                                                                               .
+
+05:28 pm Monday, December 12, 2022
+[1728]→	⊼₂ Unit 6.2: Efficiency Matters
+Numerous applications will use the OS. Make sure that these methods are as 
+efficient as possible! For example, multiplication.
+let x = 419*5003 is the same as let x=Math.multiply(419, 5003);
+Math.multiply: Multiply binary!
+
+02:59 pm Monday, December 12, 2022
+[1459]→ ⊼₂ Unit 6.1 Operating System
+
+Typical OS services include 
+	mathmetical operations
+	abstract data types
+	input functions
+	textual output
+	graphics output
+
+System oriented services include 
+	file systems
+	memory managements
+	drivers
+	UI management
+	multi-tasking
+	networking
+    security 
+
+The OS classes:
+1) Math provides mathematics functions like absolute value and multiply. 
+2) Memory contains functions that access the RAM. 
+3) Screen contains functions that can draw polygons.
+4) Output will write text on the screen.
+5) Keyboard interacts with the user.
+6) String provides string processing services like Java's.
+7) Array provides array processing services, but arrays are very similar to 
+   objects.
+8) Sys provides some useful algorithms.
