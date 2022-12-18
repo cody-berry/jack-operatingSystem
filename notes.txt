@@ -1,4 +1,18 @@
                                                                               .
+02:20 pm Wednesday, December 21, 2022
+[1420]→	Unit 6.4: Memory Access
+peek():
+256-2048: Stack
+2048-16384: Heap
+16384-24577: I/O memory maps
+24577-32767: Unused area
+Using a static array ram, create an init function that says 'ram=0'.
+Return ram[i].
+
+poke():
+Set ram[i] to value and return.
+
+
 
 05:21 pm Saturday, December 17, 2022
 [1721]→	⊼₂ Unit 6.3: Mathematical Operations 
