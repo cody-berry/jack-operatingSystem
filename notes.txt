@@ -1,4 +1,18 @@
                                                                               .
+02:33 pm Wednesday, December 21, 2022
+[1433]→	Unit 6.5: Heap Management
+init():
+Already implemented: 'ram=0', static array ram
+Free should be set to the heap base. Now we can use our whole heap. 
+
+alloc(size):
+block = free
+free = free + size
+return block
+
+deAlloc():
+
+
 02:20 pm Wednesday, December 21, 2022
 [1420]→	Unit 6.4: Memory Access
 peek():
