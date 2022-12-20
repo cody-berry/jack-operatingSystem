@@ -4,13 +4,17 @@
 init():
 Already implemented: 'ram=0', static array ram
 Free should be set to the heap base. Now we can use our whole heap. 
+Use a linked list to keep track of available heap segments.
 
 alloc(size):
+iterate through the linked list to find a block of size size+2. keep the smallest that is greater than equal to size+2 in mind.
+otherwise
 block = free
 free = free + size
 return block
 
 deAlloc():
+take the block and add it to the freeList
 
 
 02:20 pm Wednesday, December 21, 2022
@@ -34,7 +38,11 @@ multiply():
 In Unit 6.2.
 
 division():
-The naive way is to count how many times we can add b to itself to get a, with a/b. The correct way is with long division. The one that we're going to use in our operating system is the following: Take 100/7. We don't know the answer, but we know it's 50*2/7. We know that's 25*2*2/7. We know that's about 12*2*2*2/7. We know that's 6*2*2*2*2/7. And you get the picture.
+The naive way is to count how many times we can add b to itself to get a, 
+with a/b. The correct way is with long division. The one that we're going to 
+use in our operating system is the following: Take 100/7. We don't know the 
+answer, but we know it's 50*2/7. We know that's 25*2*2/7. We know that's 
+about 12*2*2*2/7. We know that's 6*2*2*2*2/7. And you get the picture.
 
 sqrt():
 Binary search! Use x*x and see if it is less or greater than the answer.
