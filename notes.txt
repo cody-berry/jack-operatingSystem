@@ -1,4 +1,28 @@
                                                                               .
+03:09 pm Wednesday, December 21, 2022
+[1509]→	Unit 6.6: Graphics
+
+drawPixel():
+Grab the x and y coordinates. Then grab the x modulo 16th bit of the value to the current color, somehow. 
+
+03:22 pm Wednesday, December 21, 2022
+[1522]→	Unit 6.7: Line Drawing
+
+drawLine(x, y, dx, dy):
+a=0, b=0, diff=0
+while a<dx and b<dy:
+	drawPixel(x+a, y+b)
+	if diff < 0: a=a+1, diff=diff+dy
+	else: b=b+1, diff=diff-dx
+
+drawCircle(x, y, r):
+dy=-r.
+while dy < r:
+	a = x-√(r²-dy²)
+	b=y+dy
+	drawLine(a, b, 2*a, 0)
+	r += 1
+
 02:33 pm Wednesday, December 21, 2022
 [1433]→	Unit 6.5: Heap Management
 init():
