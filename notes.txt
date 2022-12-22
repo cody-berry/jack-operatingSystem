@@ -1,9 +1,4 @@
-                                                                              .
-03:09 pm Wednesday, December 21, 2022
-[1509]→	Unit 6.6: Graphics
 
-drawPixel():
-Grab the x and y coordinates. Then grab the x modulo 16th bit of the value to the current color, somehow. 
 
 03:22 pm Wednesday, December 21, 2022
 [1522]→	Unit 6.7: Line Drawing
@@ -14,6 +9,16 @@ while a<dx and b<dy:
 	drawPixel(x+a, y+b)
 	if diff < 0: a=a+1, diff=diff+dy
 	else: b=b+1, diff=diff-dx
+                                                                              .
+03:09 pm Wednesday, December 21, 2022
+[1509]→	Unit 6.6: Graphics
+
+drawPixel():
+Grab the x and y coordinates. Then grab the x modulo 16th bit of the value to the current color, somehow. 
+address = 32*y + x/16
+value=Memory.peek[16384 + address]
+set the (x % 16)th bit of value to the current color
+do Memory.poke(address, value)
 
 drawCircle(x, y, r):
 dy=-r.
