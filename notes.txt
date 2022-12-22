@@ -1,5 +1,23 @@
 
 
+02:38 pm Thursday, December 22, 2022
+[1438]→	Unit 6.8: Handling Textual Output
+Graphics: 256 by 512 pixels for drawing lines, circles, pixels, and things like that
+Textual: 23 rows of 64 characters. This is because each character is 11 pixels high and 8 pixels wide. 2 emty columns and 1 row at the bottom. 
+We have charMaps!
+initMap:
+charMaps is a new 127 characters. 
+create(index, a, b, c, d, e, f, g, h, i, j, k):
+map = Array.new(11)
+let charMaps[index] = map
+map[0], map[1], map[2], map[3], map[4], map[5], map[6], map[7], map[8], map[9], map[10] = a, b, c, d, e, f, g, h, i, j, k
+return
+What about the cursor?
+new line: move cursor
+backspace: move cursor backwards
+any other printable character: display the character, move cursor one column to right
+
+
 03:22 pm Wednesday, December 21, 2022
 [1522]→	Unit 6.7: Line Drawing
 
