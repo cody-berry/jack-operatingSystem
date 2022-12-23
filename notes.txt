@@ -1,5 +1,44 @@
-
                                                                               .
+
+12:20 pm Friday, December 23, 2022
+[1220]→	Unit 6.11: Array Processing
+
+11:57 am Friday, December 23, 2022
+[1157]→	Unit 6.10: String Processing
+new():
+let str = Array.new(maxLength)
+let length = 0
+return this
+
+dispose():
+
+length():
+
+charAt():
+
+setCharAt():
+
+appendChar():
+
+eraseLastChar():
+
+intValue():
+val = 0
+for each character in the string, we compute the integer value of str[i] and make value what it is times 10 plus this integer value.
+returan val
+
+setInt():
+lastDigit = val%10
+c=character representing lastDigit
+if the value is less then 10, then we return c as a string
+otherwise, we return teh value of int2string of val/10 plus c.
+
+newLine():
+
+backSpace():
+
+doubleQuote():
+
 
 03:43 pm Thursday, December 22, 2022
 [1543]→	Unit 6.9: Input
