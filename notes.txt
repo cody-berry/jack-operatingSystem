@@ -1,4 +1,32 @@
 
+                                                                              .
+
+03:43 pm Thursday, December 22, 2022
+[1543]→	Unit 6.9: Input
+RAM[24576] is the keyboard. Each keyboard press's ASCII code will be displayed in RAM[24576].
+Mappings:
+ , |, ", #, $, %, &, ', (, ), *, +, ,, -, ., / = 32-47
+0, 1, ..., 9 = 48-57
+:, ;, <, =, >, ?, @ = 58-64
+A, B, C, ..., Z = 65-90
+[, /, ], ^, _, ` = 91-96
+a, b, c, ..., z = 97-122
+{, |, }, ~ = 123-126
+newline, backspace, left arrow, up arrow, right arrow, down arrow, home, end, page-up, page-down, insert, delete, esc = 128-140
+f1, f2, f3, ..., f12 = 141-152
+keyPressed():
+This is basically Ram[24576]
+
+readChar():
+Display the cursor
+While keyPressed is 0, we do nothing.
+c=code of the curerntely pressed key.
+While the key is down, do nothing. After that, we can give them what they pressed.
+
+readLine():
+str = empty string
+repeat c=readChar(), and if it is enter, we want to display new-line and change the string. If c is backspace, there is a funcction in output which is called 'backspace'.
+
 
 02:38 pm Thursday, December 22, 2022
 [1438]→	Unit 6.8: Handling Textual Output
@@ -27,7 +55,6 @@ while a<dx and b<dy:
 	drawPixel(x+a, y+b)
 	if diff < 0: a=a+1, diff=diff+dy
 	else: b=b+1, diff=diff-dx
-                                                                              .
 03:09 pm Wednesday, December 21, 2022
 [1509]→	Unit 6.6: Graphics
 
