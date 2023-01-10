@@ -1,5 +1,52 @@
                                                                               .
 
+05:37 pm Saturday, December 24, 2022
+[1737]→	Unit 6.14: Perspective
+The major differences between the jack OS and regular OSs?
+	1) Our OS doesn't support multithreading or multiprocessing.
+	2) The kernal of OS systems is to do exactly debt.
+	3) No file systems!
+	4) Our OS doesn't support either command-line shells or Windows systems.
+Why can our OS support anything?
+	1) Users are expecetd to treat hardware and software as labrotories.
+	2) Accessing OS function calls is more elaborate than a function call.
+How efficient is our OS?
+	1) The main is Math and Graphics, which are efficient.
+	2) Division and multiplication is good. Differences:
+		 1) Typically these are implemented in hardware.
+		 2) These are mostly the same ideas.
+	3) What about graphics? They are efficient. Differences:
+		 1) Typically these are implemented by software and GPUs.
+
+
+
+05:19 pm Saturday, December 24, 2022
+[1719]→	Unit 6.13: Project 12: Building the OS
+For each operating system file that we're going to develop, we use the other n-1 executable modules to service it.
+Screen, Output, String, Keyboard, Sys: Develop/test seperately using Main.jack.
+Memory, Array, Math: develop/test separately, using supplied .jack/.tst/.cmp
+Final test:
+1. Make a copy of the directory nand2tetris/projects/11/Pong
+2. copy the 8 compiled folders there
+3. Test!
+
+12:26 pm Friday, December 23, 2022
+[1226]→	Unit 6.12: The Sys Class
+Hardware contract: When the computer is reset, start with ROM[0]
+VM contract: Set SP to 26 and call Sys.init
+Jack contract: Program execution starts with Main.main()
+OS contract: Sys.init should initialize the OS, and then call Main.main().
+init():
+Go through everyone who has an init function and initialize them.
+Then call Main.main().
+halt():
+Stop the computer and freeze it.
+wait():
+Waits for duration milliseconds. 
+error():
+Gets an error code, then prints it out.
+
+
 12:20 pm Friday, December 23, 2022
 [1220]→	Unit 6.11: Array Processing
 
