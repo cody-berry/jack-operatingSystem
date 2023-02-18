@@ -1,5 +1,76 @@
                                                                               .
 
+                                                                               .
+03:11 pm Wednesday, December 28, 2022
+[1511]→	Unit 7.1: More Fun To Go
+In module 7, we will look back to our compiler and add extensions! 
+A extension starts with a design. Norm and Shockin were the designers, while we were the system developers.
+What makes a good design good?
+	1) Obvious things: Modularity, simplicity, elegance, clarity, beauty
+	How do you improve multiplying and dividing? By using a hardware chip!
+		Bit shifting can also speed up multiplying and dividing.
+Improvements:
+	1) Make a hardware chip for multiplying and dividing
+	2) Add bit shifting
+	3) Combine VM translator and compiler or just spot patterns in VM translator
+
+10:42 am Friday, December 30, 2022
+[1042]→	Unit 7.2: More Fun To Go
+How to add mass storage and network access to Hack?
+	Assume that we have devices like hard disks and network cards.
+		If we have things like hard disks, you can store and load programs!
+		We must tinker with hardware and we need to store programs somehow.
+		We must specify a simple file system.
+		We must develop an OS class that loads and stores files.
+		If we have network cards, we can interact with other computers!
+		The chip should connect with the hardware from one end.
+		The chip should also connect with a socket on your actual PC.
+		We must develop an OS class that transports bits between different computers.
+
+                                                                               .
+
+05:28 pm Monday, December 12, 2022
+[1728]→	⊼₂ Unit 6.2: Efficiency Matters
+Numerous applications will use the OS. Make sure that these methods are as 
+efficient as possible! For example, multiplication.
+let x = 419*5003 is the same as let x=Math.multiply(419, 5003);
+Math.multiply: Multiply binary!
+
+02:59 pm Monday, December 12, 2022
+
+⊼₂ Unit 6.1 Operating System
+
+Typical OS services include 
+	mathmetical operations
+	abstract data types
+	input functions
+	textual output
+	graphics output
+
+System oriented services include 
+	file systems
+	memory managements
+	drivers
+	UI management
+	multi-tasking
+	networking
+    security 
+
+The OS classes:
+1) Math provides mathematics functions like absolute value and multiply. 
+2) Memory contains functions that access the RAM. 
+3) Screen contains functions that can draw polygons.
+4) Output will write text on the screen.
+5) Keyboard interacts with the user.
+6) String provides string processing services like Java's.
+7) Array provides array processing services, but arrays are very similar to 
+   objects.
+8) Sys provides some useful algorithms.
+
+ 
+
+
+
 05:37 pm Saturday, December 24, 2022
 [1737]→	Unit 6.14: Perspective
 The major differences between the jack OS and regular OSs?
