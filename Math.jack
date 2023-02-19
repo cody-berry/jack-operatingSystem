@@ -15,9 +15,10 @@ class Math {
 
     /** Returns the absolute value of x. */
     function int abs(int x) {
+        // the absolute value of a negative number is the positive version
         if (x < 0) {
-            return -x;
-        } else {
+            return -x; 
+        } else { // the abs value of a positive number is the number itself
             return x;
         }
     }
@@ -44,9 +45,19 @@ class Math {
 
     /** Returns the greater number. */
     function int max(int a, int b) {
+        if (b > a) {
+            return b;
+        } else {
+            return a
+        }
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
+        if (b > a) {
+            return a;
+        } else {
+            return b;
+        }
     }
 }
