@@ -36,11 +36,42 @@ class Math {
      *  program's code, it handles it by invoking this method. In other words,
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
-    function int divide(int x, int y) {
+    function int divide(int x, int y) 
+        var int q;
+        if (y > x) {
+            return 0;
+        }
+        let q = divide(x, 2*y);
+        if ((x-(2*q*y)) < y) {
+            return 2*q;
+        } else {
+            return (2*q) + 1;
+        }
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
+        var int leftBound, rightBound, middleBound;
+        let leftBound = 0;
+        let rightBound = max(x, 362);
+        let middleBound = (leftBound + rightBound)/2;
+
+        while (true) {
+            if (middleBound*middleBound < x) {
+                leftBound = middleBound;
+                middleBound = middleBound + (leftBound + rightBound)/2;
+            } 
+            if (middleBound*middleBound > x) {
+                rightBound = middleBound;
+                middleBound = middleBound - (leftBound + rightBound)/2;
+            } 
+            if (middleBound*middleBound = x) {
+                return middleBound;
+            } 
+            if (rightBound - leftBound < 2) {
+                return leftBound;
+            } 
+        }
     }
 
     /** Returns the greater number. */
@@ -48,7 +79,7 @@ class Math {
         if (b > a) {
             return b;
         } else {
-            return a
+            return a;
         }
     }
 
