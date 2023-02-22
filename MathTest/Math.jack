@@ -38,17 +38,25 @@ class Math {
         let shift = 1;
         let xCopy = x;
 
+        do Output.printString("xCopy = ");
+        do Output.printInt(xCopy);
+        do Output.println();
+
 
         // while shift is not 0, we try to subtract shift from x.
         // if we can, we set the respective bit to 1 and subtract it from 
         // xCopy.
-        while (xCopy) {
-            if (xCopy > shift) {
+        while (xCopy > 0) {
+            if ((shift < xCopy) | (shift = xCopy)) {
                 let result[i] = 1;
                 let xCopy = xCopy - shift;
             } else {
                 let result[i] = 0;
             }
+
+            do Output.printString("shift = ");
+            do Output.printInt(shift);
+            do Output.println();
 
             let shift = shift+shift;
             let i = i + 1;
@@ -67,6 +75,14 @@ class Math {
         let absX = Math.abs(x);
         let absY = Math.abs(y);
 
+        // do Output.printString("absX = ");
+        // do Output.printInt(absX);
+        // do Output.println();
+
+        // do Output.printString("absY = ");
+        // do Output.printInt(absY);
+        // do Output.println();
+
         let numNegatives = 0;
         if (~(absX = x)) {
             let numNegatives = numNegatives + 1;
@@ -80,7 +96,14 @@ class Math {
         let binaryY = Math.convertToBinary(absY);
         let i = 0;
 
+
+
         while (i < 16) {
+            // do Output.printString("binaryY[");
+            // do Output.printInt(i);
+            // do Output.printString("] = ");
+            // do Output.printInt(binaryY[i]);
+            // do Output.println();
             if (binaryY[i] = 1) {
                 let sum = sum + shiftedX;
             }
@@ -90,9 +113,8 @@ class Math {
 
         if (numNegatives = 1) {
             return -sum;
-        } else {
-            return sum;
         }
+        return sum;
     }
 
     /** Returns the integer part of x/y.
