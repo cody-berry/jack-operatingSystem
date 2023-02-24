@@ -27,38 +27,36 @@ class Math {
     /**
      *  Converts X to binary. 
      *  A list of booleans are returned. Each boolean is true if their 
-     *  respective bit is on, and false if not. The length of the array is 15
-     *  because the number cannot be negative. 
+     *  respective bit is on, and false if not. The length of the array is 15.
+     *  Does not modify the original number. The form is binary, as this does 
+     *  not work for negative numbers. 
      */
     function int convertToBinary(int x) {
         var Array result;
         var int i, shift, xCopy;
         let result = Array.new(15);
         let i = 0;
-        let shift = 1;
+        let shift = 16384;
         let xCopy = x;
 
-        do Output.printString("xCopy = ");
         do Output.printInt(xCopy);
         do Output.println();
-
 
         // while shift is not 0, we try to subtract shift from x.
         // if we can, we set the respective bit to 1 and subtract it from 
         // xCopy.
-        while (xCopy > 0) {
+        while (i < 15) {
             if ((shift < xCopy) | (shift = xCopy)) {
                 let result[i] = 1;
                 let xCopy = xCopy - shift;
             } else {
                 let result[i] = 0;
             }
-
-            do Output.printString("shift = ");
+            do Output.printInt(xCopy);
+            do Output.println();
             do Output.printInt(shift);
             do Output.println();
-
-            let shift = shift+shift;
+            let shift = shift/2;
             let i = i + 1;
         }
 
@@ -76,18 +74,17 @@ class Math {
         let absY = Math.abs(y);
 
         // do Output.printString("absX = ");
-        // do Output.printInt(absX);
-        // do Output.println();
+        do Output.printInt(absX);
+        do Output.println();
 
         // do Output.printString("absY = ");
-        // do Output.printInt(absY);
-        // do Output.println();
+        do Output.printInt(absY);
+        do Output.println();
 
         let numNegatives = 0;
         if (~(absX = x)) {
-            let numNegatives = numNegatives + 1;
-        }
-        if (~(absY = y)) {
+            let numNegatives = 1;
+        } if (~(absY = y)) {
             let numNegatives = numNegatives + 1;
         }
 
@@ -98,17 +95,26 @@ class Math {
 
 
 
-        while (i < 16) {
+        while (i < 15) {
             // do Output.printString("binaryY[");
-            // do Output.printInt(i);
+            do Output.printInt(i);
             // do Output.printString("] = ");
-            // do Output.printInt(binaryY[i]);
-            // do Output.println();
+            do Output.printInt(binaryY[i]);
+            do Output.println();
             if (binaryY[i] = 1) {
                 let sum = sum + shiftedX;
             }
             let shiftedX = shiftedX + shiftedX;
             let i = i + 1;
+        }
+        let shiftedX = -shiftedX;
+        // do Output.printString("binaryY[");
+        do Output.printInt(15);
+        // do Output.printString("] = ");
+        do Output.printInt(binaryY[15]);
+        do Output.println();
+        if (binaryY[i] = 1) {
+            let sum = sum + shiftedX;
         }
 
         if (numNegatives = 1) {
@@ -123,15 +129,16 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+        do Output.printInt(0);
         var int q;
         if (y > x) {
             return 0;
         }
-        let q = x/(2*y);
-        if ((x-(2*q*y)) < y) {
-            return 2*q;
+        let q = x/(y + y);
+        if ((x-((q + q)*y)) < y) {
+            return q + q;
         } else {
-            return (2*q) + 1;
+            return q + q + 1;
         }
     }
 
