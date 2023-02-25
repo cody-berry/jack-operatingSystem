@@ -129,6 +129,7 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+        do Output.println();
         var int q;
         if (y > x) {
             return 0;
