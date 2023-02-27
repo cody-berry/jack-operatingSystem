@@ -244,7 +244,7 @@ block = free
 free = free + size
 return block
 
-deAlloc():
+deAlloc(o):
 take the block and add it to the freeList
 
 
