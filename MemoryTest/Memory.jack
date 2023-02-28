@@ -16,7 +16,7 @@ class Memory {
     /** Initializes the class. */
     function void init() {
         let free = 2048;
-        let freeList = Array.new(14336);
+        let freeList = Array.new(28672);
         let freeSpaces = 0;
         let ram = 0;
         return;
@@ -36,7 +36,17 @@ class Memory {
     /** Finds an available RAM block of the given size and returns
      *  a reference to its base address. */
     function int alloc(int size) {
-        return 1;
+        var int i, block;
+        let i = 0;
+        while (i < freeSpaces) {
+            if (freeList[(i*2)+1] > size + 1) {
+                let freeList[(i*2)+1] = freeList[(i*2)+1] - size - 2;
+                return freeList[i*2];
+            }
+        }
+        let block = free;
+        let free = free + size;
+        return block;
     }
 
     /** De-allocates the given object (cast as an array) by making

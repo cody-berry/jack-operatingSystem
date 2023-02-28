@@ -1,7 +1,7 @@
 function Memory.init 0
 push constant 2048
 pop static 0
-push constant 14336
+push constant 28672
 call Array.new 1
 pop static 1
 push constant 0
@@ -28,8 +28,73 @@ push temp 0
 pop that 0
 push constant 0
 return
-function Memory.alloc 0
+function Memory.alloc 2
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push static 3
+lt
+not
+if-goto WHILE_END0
+push local 0
+push constant 2
+call Math.multiply 2
 push constant 1
+add
+push static 1
+add
+pop pointer 1
+push that 0
+push argument 0
+gt
+push constant 1
+add
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push constant 2
+call Math.multiply 2
+push constant 1
+add
+push static 1
+add
+push local 0
+push constant 2
+call Math.multiply 2
+push constant 1
+add
+push static 1
+add
+pop pointer 1
+push that 0
+push argument 0
+sub
+push constant 2
+sub
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 2
+call Math.multiply 2
+push static 1
+add
+pop pointer 1
+push that 0
+return
+label IF_FALSE0
+goto WHILE_EXP0
+label WHILE_END0
+push static 0
+pop local 1
+push static 0
+push argument 0
+add
+pop static 0
+push local 1
 return
 function Memory.deAlloc 0
 push constant 0
