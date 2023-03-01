@@ -10,14 +10,14 @@
  */ 
 class Memory {
     static int free;
-    static Array freeList, ram;
-    static int freeSpaces;
+    static Array objectList, ram;
+    static int objects;
 
     /** Initializes the class. */
     function void init() {
         let free = 2048;
-        let freeList = Array.new(28672);
-        let freeSpaces = 0;
+        let objectList = Array.new(43008);
+        let objects = 0;
         let ram = 0;
         return;
     }
@@ -38,14 +38,19 @@ class Memory {
     function int alloc(int size) {
         var int i, block;
         let i = 0;
-        while (i < freeSpaces) {
-            if (freeList[(i*2)+1] > size + 1) {
-                let freeList[(i*2)+1] = freeList[(i*2)+1] - size - 2;
-                return freeList[i*2];
+        while (i < objectList) {
+            if ((objectList[(i*3)+2] > size + 1) & objectList[i*3+1]) {
+                let objectList[(i*3)+2] = objectList[(i*3)+2] - size - 2;
+                return objectList[i*3] + objectList[(i*3)+2];
             }
+            let i = i + 1;
         }
+        let objects = objects + 1;
         let block = free;
         let free = free + size;
+        let objectList[i*3] = block;
+        let objectList[i*3+1] = false;
+        let objectList[i*3+2] = size;
         return block;
     }
 
