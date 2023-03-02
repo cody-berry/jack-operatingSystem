@@ -11,56 +11,10 @@ class Math {
 
     /** Initializes the library. */
     function void init() {
-        return;
     }
 
     /** Returns the absolute value of x. */
     function int abs(int x) {
-        // the absolute value of a negative number is the positive version
-        if (x < 0) {
-            return -x; 
-        } else { // the abs value of a positive number is the number itself
-            return x;
-        }
-    }
-
-    /**
-     *  Converts X to binary. 
-     *  A list of booleans are returned. Each boolean is true if their 
-     *  respective bit is on, and false if not. The length of the array is 15.
-     *  Does not modify the original number. The form is binary, as this does 
-     *  not work for negative numbers. 
-     */
-    function int convertToBinary(int x) {
-        var Array result;
-        var int i, shift, xCopy;
-        let result = Array.new(15);
-        let i = 0;
-        let shift = 16384;
-        let xCopy = x;
-
-        do Output.printInt(xCopy);
-        do Output.println();
-
-        // while shift is not 0, we try to subtract shift from x.
-        // if we can, we set the respective bit to 1 and subtract it from 
-        // xCopy.
-        while (i < 15) {
-            if ((shift < xCopy) | (shift = xCopy)) {
-                let result[i] = 1;
-                let xCopy = xCopy - shift;
-            } else {
-                let result[i] = 0;
-            }
-            do Output.printInt(xCopy);
-            do Output.println();
-            do Output.printInt(shift);
-            do Output.println();
-            let shift = shift/2;
-            let i = i + 1;
-        }
-
-        return result;
     }
 
     /** Returns the product of x and y. 
@@ -69,58 +23,6 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
-        var int binaryY, sum, shiftedX, i, numNegatives, absX, absY;
-        let absX = Math.abs(x);
-        let absY = Math.abs(y);
-
-        // do Output.printString("absX = ");
-        do Output.printInt(absX);
-        do Output.println();
-
-        // do Output.printString("absY = ");
-        do Output.printInt(absY);
-        do Output.println();
-
-        let numNegatives = 0;
-        if (~(absX = x)) {
-            let numNegatives = 1;
-        } if (~(absY = y)) {
-            let numNegatives = numNegatives + 1;
-        }
-
-        let shiftedX = absX;
-        let sum = 0;
-        let binaryY = Math.convertToBinary(absY);
-        let i = 0;
-
-
-
-        while (i < 15) {
-            // do Output.printString("binaryY[");
-            do Output.printInt(i);
-            // do Output.printString("] = ");
-            do Output.printInt(binaryY[i]);
-            do Output.println();
-            if (binaryY[i] = 1) {
-                let sum = sum + shiftedX;
-            }
-            let shiftedX = shiftedX + shiftedX;
-            let i = i + 1;
-        }
-        let shiftedX = -shiftedX;
-        // do Output.printString("binaryY[");
-        do Output.printInt(15);
-        // do Output.printString("] = ");
-        do Output.printInt(binaryY[15]);
-        do Output.println();
-        if (binaryY[i] = 1) {
-            let sum = sum + shiftedX;
-        }
-
-        if (numNegatives = 1) {
-            return -sum;
-        }
-        return sum;
     }
 
     /** Returns the integer part of x/y.
@@ -129,60 +31,17 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
-        do Output.println();
-        var int q;
-        if (y > x) {
-            return 0;
-        }
-        let q = x/(y + y);
-        if ((x-((q + q)*y)) < y) {
-            return q + q;
-        } else {
-            return q + q + 1;
-        }
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-        var int leftBound, rightBound, middleBound;
-        let leftBound = 0;
-        let rightBound = Math.max(x, 362);
-        let middleBound = (leftBound + rightBound)/2;
-
-        while (true) {
-            if (middleBound*middleBound < x) {
-                let leftBound = middleBound;
-                let middleBound = middleBound + (leftBound + rightBound)/2;
-            } 
-            if (middleBound*middleBound > x) {
-                let rightBound = middleBound;
-                let middleBound = middleBound - (leftBound + rightBound)/2;
-            } 
-            if (middleBound*middleBound = x) {
-                return middleBound;
-            } 
-            if (rightBound - leftBound < 2) {
-                return leftBound;
-            } 
-        }
-        return 0;
     }
 
     /** Returns the greater number. */
     function int max(int a, int b) {
-        if (b > a) {
-            return b;
-        } else {
-            return a;
-        }
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
-        if (b > a) {
-            return a;
-        } else {
-            return b;
-        }
     }
 }

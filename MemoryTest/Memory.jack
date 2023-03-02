@@ -38,9 +38,12 @@ class Memory {
     function int alloc(int size) {
         var int i, block;
         let i = 0;
-        while (i < objectList) {
+        while (i < objects) {
             if ((objectList[(i*3)+2] > size + 1) & objectList[i*3+1]) {
                 let objectList[(i*3)+2] = objectList[(i*3)+2] - size - 2;
+                let objectList[objects*3] = objectList[i*3] + objectList[(i*3)+2];
+                let objectList[(objects*3)+1] = false;
+                let objectList[(objects*3)+2] = size;
                 return objectList[i*3] + objectList[(i*3)+2];
             }
             let i = i + 1;
@@ -49,14 +52,21 @@ class Memory {
         let block = free;
         let free = free + size;
         let objectList[i*3] = block;
-        let objectList[i*3+1] = false;
-        let objectList[i*3+2] = size;
+        let objectList[(i*3)+1] = false;
+        let objectList[(i*3)+2] = size;
         return block;
     }
 
     /** De-allocates the given object (cast as an array) by making
      *  it available for future allocations. */
     function void deAlloc(Array o) {
-        return;
+        var int i;
+        let i = 0;
+        while (i < objects) {
+            if (objectList[(i*3)+1]) {
+
+            }
+            return;
+        }
     }    
 }
