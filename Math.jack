@@ -11,10 +11,20 @@ class Math {
 
     /** Initializes the library. */
     function void init() {
+        return; // nothing needed
     }
 
-    /** Returns the absolute value of x. */
+    /** Returns the absolute value of x. 
+     *  The absolute value of a negative number is -x and the absolute value 
+     *  of a positive number is itself.
+     */
     function int abs(int x) {
+        // always return positive version
+        if (x < 0) {
+            return -x; // negative x → return -x, or positive version
+        } else {
+            return x;  // positive x → return x, or positive version
+        }
     }
 
     /** Returns the product of x and y. 
@@ -23,6 +33,7 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
+        return; // haven't implemented
     }
 
     /** Returns the integer part of x/y.
@@ -31,17 +42,29 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+        return; // haven't implemented
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
+        return; // haven't implemented
     }
 
     /** Returns the greater number. */
     function int max(int a, int b) {
+        // return a if a is greater
+        if (a > b) {
+            return a;
+        } 
+        // return b if b is greater or equal. if b = a, it doesn't matter
+        // which we return. we return b for this implementation.
+        else {
+            return b;
+        }
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
+        return; // haven't implemented
     }
 }
