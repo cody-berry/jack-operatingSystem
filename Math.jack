@@ -65,6 +65,14 @@ class Math {
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
-        return; // haven't implemented
+        // return a if a is less
+        if (a < b) {
+            return a;
+        }
+        // return b if b is less than or equal. if b = a, it doesn't matter
+        // which we return. we return b for this implementation. 
+        if (b < a) {
+            return b;
+        }
     }
 }
