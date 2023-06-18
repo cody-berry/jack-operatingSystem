@@ -33,7 +33,7 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
-        return; // haven't implemented
+        return 0; // haven't implemented
     }
 
     /** Returns the integer part of x/y.
@@ -42,42 +42,51 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
-        return; // haven't implemented
+        return 0; // haven't implemented
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-        
+        var int lowerBound, upperBound, middleBound, iterations;
         // Initialize:
         // Lower bound is 0
-
+        let lowerBound = 0;
         // Upper bound is minimum of x and 382
-
+        let upperBound = Math.min(x, 382);
         // Middle bound is average of lower bound and upper bound
-
+        let middleBound = (lowerBound + upperBound)/2;
         // End of initialization
         // Repeat the following forever:
-
+        while (true) {
             // If the middle bound squared is less than the target bound, 
             // the target bound cannot be less than what is now the left bound,
             // or the middle bound
-
-
+            if (middleBound*middleBound < x) {
+                let lowerBound = middleBound;
+            }
             // If the middle bound squared is greater than the target bound, 
             // the target bound cannot be greater than what is now the upper
             // bound, or the middle bound
-
-
-            // If the middle bound squared is equal to the target bound, the 
-            // middle bound is the fruit of the product, the square root of x
-
-
+            if (middleBound*middleBound > x) {
+                let upperBound = middleBound;
+            }
+            // If the middle bound squared is equal to the target bound, return 
+            // the middle bound, the square root of x
+            if (middleBound*middleBound = x) {
+                return middleBound;
+            }
             // If the upper bound minus the lower bound is 1 or less, the square 
             // root must be the lower bound because we would've known that it was
             // the upper bound while we were moving the upper bound
-
-
-        // There's no need to return at the end because we're repeating forever. 
+            if (upperBound - lowerBound < 2) {
+                return lowerBound;
+            }
+            // Set the middleBound to the average of lowerBound and upperBound
+            let middleBound = (lowerBound + upperBound)/2;
+        }
+        // There's no need to return at the end because we're repeating forever, 
+        // but we must to prevent compilation errors.
+        return -1;
     }
 
     /** Returns the greater number. */
@@ -101,7 +110,7 @@ class Math {
         }
         // return b if b is less than or equal. if b = a, it doesn't matter
         // which we return. we return b for this implementation. 
-        if (b < a) {
+        else {
             return b;
         }
     }
