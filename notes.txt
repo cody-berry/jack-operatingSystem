@@ -1,5 +1,45 @@
                                                                               .
 
+01:39 pm Monday, July 10, 2023
+[1339]→	Efficiency Matters
+	We want to be efficient!
+	Multiplication
+		In some class..."let x = 419 * 5003;". 
+		That is replaced by "let x = Math.multiply(419, 5003)"
+		1) Repetitive addition. This is really inefficient. O(N).
+		2) What did we learn in elementary school?
+			Do this in binary.
+			Take x and write it down.
+			Shift x one position to the left, then again and so on and so forth.	
+			Add up only those rows.
+			Runtime: O(log(n)).
+			We can easily implement this in hardware.
+			
+
+
+12:34 pm Monday, July 10, 2023
+[1234]→	Project 12: Building the OS
+	The OS consists of 8 classes. Each is designed to service some functionality.
+	The OS is nothing more than an obstruction.
+	We're going to find 3 different implementations of the same obstructions:
+		1) VM emulator: Features a built-in Java OS implementation.
+		2) Tools OS: This is an OS implementation in VM. 
+		3) Our implementation! 
+	The OS consists of any number of modules with high inter-dependency.
+	For each module in the OS, implement the module separately, using the remaining n-1 moduloes to service it. 
+	Development:
+		1) Put the files "Main.jack" and the other jack file in a directory.
+		2) Compile the directory.
+		3) Execute the directory in the VM emulator.
+	Stepwide:
+		Memory, Array, Math: develop/test separately using supplied jack, tst, and cmp files
+		Screen, Output, String, Keyboard, Sys: develop/test separately, using supplied jack programs
+		Can be developed in any order.
+		Final test:
+			1) Make a copy of the directory nand2tetris/projects/11/Pong
+			2) Copy the 8 compiled files of your OS into this directory
+			3) Execute the test. 
+
 
                                                                               
                                                                                .

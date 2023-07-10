@@ -11,56 +11,20 @@ class Math {
 
     /** Initializes the library. */
     function void init() {
-        return;
+        return; // nothing needed
     }
 
-    /** Returns the absolute value of x. */
-    function int abs(int x) {
-        // the absolute value of a negative number is the positive version
-        if (x < 0) {
-            return -x; 
-        } else { // the abs value of a positive number is the number itself
-            return x;
-        }
-    }
-
-    /**
-     *  Converts X to binary. 
-     *  A list of booleans are returned. Each boolean is true if their 
-     *  respective bit is on, and false if not. The length of the array is 15.
-     *  Does not modify the original number. The form is binary, as this does 
-     *  not work for negative numbers. 
+    /** Returns the absolute value of x. 
+     *  The absolute value of a negative number is -x and the absolute value 
+     *  of a positive number is itself.
      */
-    function int convertToBinary(int x) {
-        var Array result;
-        var int i, shift, xCopy;
-        let result = Array.new(15);
-        let i = 0;
-        let shift = 16384;
-        let xCopy = x;
-
-        do Output.printInt(xCopy);
-        do Output.println();
-
-        // while shift is not 0, we try to subtract shift from x.
-        // if we can, we set the respective bit to 1 and subtract it from 
-        // xCopy.
-        while (i < 15) {
-            if ((shift < xCopy) | (shift = xCopy)) {
-                let result[i] = 1;
-                let xCopy = xCopy - shift;
-            } else {
-                let result[i] = 0;
-            }
-            do Output.printInt(xCopy);
-            do Output.println();
-            do Output.printInt(shift);
-            do Output.println();
-            let shift = shift/2;
-            let i = i + 1;
+    function int abs(int x) {
+        // always return positive version
+        if (x < 0) {
+            return -x; // negative x → return -x, or positive version
+        } else { // 0 x → return 0, which is either -x or x
+            return x;  // positive x → return x, or positive version
         }
-
-        return result;
     }
 
     /** Returns the product of x and y. 
@@ -69,58 +33,7 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
-        var int binaryY, sum, shiftedX, i, numNegatives, absX, absY;
-        let absX = Math.abs(x);
-        let absY = Math.abs(y);
-
-        // do Output.printString("absX = ");
-        do Output.printInt(absX);
-        do Output.println();
-
-        // do Output.printString("absY = ");
-        do Output.printInt(absY);
-        do Output.println();
-
-        let numNegatives = 0;
-        if (~(absX = x)) {
-            let numNegatives = 1;
-        } if (~(absY = y)) {
-            let numNegatives = numNegatives + 1;
-        }
-
-        let shiftedX = absX;
-        let sum = 0;
-        let binaryY = Math.convertToBinary(absY);
-        let i = 0;
-
-
-
-        while (i < 15) {
-            // do Output.printString("binaryY[");
-            do Output.printInt(i);
-            // do Output.printString("] = ");
-            do Output.printInt(binaryY[i]);
-            do Output.println();
-            if (binaryY[i] = 1) {
-                let sum = sum + shiftedX;
-            }
-            let shiftedX = shiftedX + shiftedX;
-            let i = i + 1;
-        }
-        let shiftedX = -shiftedX;
-        // do Output.printString("binaryY[");
-        do Output.printInt(15);
-        // do Output.printString("] = ");
-        do Output.printInt(binaryY[15]);
-        do Output.println();
-        if (binaryY[i] = 1) {
-            let sum = sum + shiftedX;
-        }
-
-        if (numNegatives = 1) {
-            return -sum;
-        }
-        return sum;
+        return 0; // haven't implemented
     }
 
     /** Returns the integer part of x/y.
@@ -129,59 +42,75 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
-        do Output.println();
-        var int q;
-        if (y > x) {
-            return 0;
-        }
-        let q = x/(y + y);
-        if ((x-((q + q)*y)) < y) {
-            return q + q;
-        } else {
-            return q + q + 1;
-        }
+        return 0; // haven't implemented
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-        var int leftBound, rightBound, middleBound;
-        let leftBound = 0;
-        let rightBound = Math.max(x, 362);
-        let middleBound = (leftBound + rightBound)/2;
-
+        var int lowerBound, upperBound, middleBound, iterations;
+        // Initialize:
+        // Lower bound is 0
+        let lowerBound = 0;
+        // Upper bound is minimum of x and 382
+        let upperBound = Math.min(x, 382);
+        // Middle bound is average of lower bound and upper bound
+        let middleBound = (lowerBound + upperBound)/2;
+        // End of initialization
+        // Repeat the following forever:
         while (true) {
+            // If the middle bound squared is less than the target bound, 
+            // the target bound cannot be less than what is now the left bound,
+            // or the middle bound
             if (middleBound*middleBound < x) {
-                let leftBound = middleBound;
-                let middleBound = middleBound + (leftBound + rightBound)/2;
-            } 
+                let lowerBound = middleBound;
+            }
+            // If the middle bound squared is greater than the target bound, 
+            // the target bound cannot be greater than what is now the upper
+            // bound, or the middle bound
             if (middleBound*middleBound > x) {
-                let rightBound = middleBound;
-                let middleBound = middleBound - (leftBound + rightBound)/2;
-            } 
+                let upperBound = middleBound;
+            }
+            // If the middle bound squared is equal to the target bound, return 
+            // the middle bound, the square root of x
             if (middleBound*middleBound = x) {
                 return middleBound;
-            } 
-            if (rightBound - leftBound < 2) {
-                return leftBound;
-            } 
+            }
+            // If the upper bound minus the lower bound is 1 or less, the square 
+            // root must be the lower bound because we would've known that it was
+            // the upper bound while we were moving the upper bound
+            if (upperBound - lowerBound < 2) {
+                return lowerBound;
+            }
+            // Set the middleBound to the average of lowerBound and upperBound
+            let middleBound = (lowerBound + upperBound)/2;
         }
-        return 0;
+        // There's no need to return at the end because we're repeating forever, 
+        // but we must to prevent compilation errors.
+        return -1;
     }
 
     /** Returns the greater number. */
     function int max(int a, int b) {
-        if (b > a) {
-            return b;
-        } else {
+        // return a if a is greater
+        if (a > b) {
             return a;
+        } 
+        // return b if b is greater or equal. if b = a, it doesn't matter
+        // which we return. we return b for this implementation.
+        else {
+            return b;
         }
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
-        if (b > a) {
+        // return a if a is less
+        if (a < b) {
             return a;
-        } else {
+        }
+        // return b if b is less than or equal. if b = a, it doesn't matter
+        // which we return. we return b for this implementation. 
+        else {
             return b;
         }
     }

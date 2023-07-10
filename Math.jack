@@ -22,7 +22,7 @@ class Math {
         // always return positive version
         if (x < 0) {
             return -x; // negative x → return -x, or positive version
-        } else {
+        } else { // 0 x → return 0, which is either -x or x
             return x;  // positive x → return x, or positive version
         }
     }
