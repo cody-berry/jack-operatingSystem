@@ -33,7 +33,68 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
-        return 0; // haven't implemented
+        var Array binaryY;
+        var int sum, shiftedX, i;
+
+        // convert y to binary
+        let binaryY = Math.convertToBin(y);
+
+        // make a sum variable (our result)
+        let sum = 0;
+
+        // add what we're going to add to sum next iteration
+        let shiftedX = x;
+
+        // iterate through the binary y
+        let i = 0;
+        while (i < 16) {
+            // if the bit is 1, add shiftedX to the sum
+            if (binaryY[i] = 1) {
+                let sum = sum + shiftedX;
+            }
+
+            // double shiftedX
+            // add shiftedX to itself to prevent a recursive basecase-less algorithm
+            let shiftedX = shiftedX + shiftedX;
+        }
+
+        // return the result
+        return sum;
+    }
+
+    /** Returns the binary representation of x.
+     *  The first element is the 1's digit, then 2, then 4, 8, 16, 32, etc.
+     */
+    function Array convertToBin(int x) {
+        var int digitToConsider, i;
+        var Array result;
+
+        // add the digit that we're considering
+        let digitToConsider = 1;
+
+        // add the result, a list of 16 bits
+        let result = Array.new(16);
+
+        // add the number of iterations
+        let i = 0;
+
+        // while the number of iterations is less than 16...
+        while (i < 16) {
+            // if x is greater than the digit we're considering, subtract the digit
+            // we're considering from the number, and set the respective element
+            // of the result to 1.
+            if (x > digitToConsider) {
+                let x = x - digitToConsider;
+                let result[i] = 1;
+            }
+
+            // double the digit we're considering.
+            let digitToConsider = digitToConsider + digitToConsider;
+            let i = i + 1;
+        }
+
+        // return the result
+        return result;
     }
 
     /** Returns the integer part of x/y.
@@ -42,7 +103,7 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
-        return 0; // haven't implemented
+        return 0; // haven't implementedx
     }
 
     /** Returns the integer part of the square root of x. */
