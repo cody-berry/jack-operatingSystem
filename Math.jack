@@ -36,6 +36,11 @@ class Math {
         var Array binaryY;
         var int sum, shiftedX, i;
 
+        do Output.printInt(x);
+        do Output.printString("*");
+        do Output.printInt(y);
+        do Output.println();
+
         // convert y to binary
         let binaryY = Math.convertToBin(y);
 
@@ -56,7 +61,11 @@ class Math {
             // double shiftedX
             // add shiftedX to itself to prevent a recursive basecase-less algorithm
             let shiftedX = shiftedX + shiftedX;
+
+            let i = i + 1;
         }
+
+        do binaryY.dispose();
 
         // return the result
         return sum;
@@ -66,30 +75,53 @@ class Math {
      *  The first element is the 1's digit, then 2, then 4, 8, 16, 32, etc.
      */
     function Array convertToBin(int x) {
-        var int digitToConsider, i;
+        var int digitToConsider, i, copyX;
         var Array result;
 
         // add the digit that we're considering
-        let digitToConsider = 1;
+        let digitToConsider = 16384;
 
         // add the result, a list of 16 bits
         let result = Array.new(16);
 
+        // create a copy of x
+        let copyX = x;
+
         // add the number of iterations
-        let i = 0;
+        // set every element to 0
+        let i = 16;
+        while (i > 0) {
+            let i = i - 1;
+            let result[i] = 0;
+        }
+
+        // if the number is negative, add 32768.
+        if (copyX < 0) {
+            let copyX = copyX + 32767 + 1;
+            let result[15] = 1;
+        }
 
         // while the number of iterations is less than 16...
-        while (i < 16) {
+        while (i < 15) {
             // if x is greater than the digit we're considering, subtract the digit
             // we're considering from the number, and set the respective element
             // of the result to 1.
-            if (x > digitToConsider) {
-                let x = x - digitToConsider;
-                let result[i] = 1;
+            do Output.printInt(copyX);
+            do Output.println();
+            if ((copyX > digitToConsider) | (copyX = digitToConsider)) {
+                let copyX = copyX - digitToConsider;
+                let result[14-i] = 1;
             }
 
-            // double the digit we're considering.
-            let digitToConsider = digitToConsider + digitToConsider;
+            // halve the digit we're considering.
+            let digitToConsider = digitToConsider/2;
+            let i = i + 1;
+        }
+
+        // print the result.
+        let i = 0;
+        while (i < 16) {
+            do Output.printInt(result[i]);
             let i = i + 1;
         }
 
@@ -103,7 +135,14 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
-        return 0; // haven't implementedx
+        // this is a recursive algorithm.
+        // base case: if y is more than x, then the floor of x/y is 0.
+
+        // if we don't know what x/y is, we do know that it's 2x/(2*y)
+        
+        // determine whether we add one from dividing by 2
+
+        return 0; // haven't implemented
     }
 
     /** Returns the integer part of the square root of x. */
@@ -112,10 +151,13 @@ class Math {
         // Initialize:
         // Lower bound is 0
         let lowerBound = 0;
+
         // Upper bound is minimum of x and 382
         let upperBound = Math.min(x, 382);
+
         // Middle bound is average of lower bound and upper bound
         let middleBound = (lowerBound + upperBound)/2;
+
         // End of initialization
         // Repeat the following forever:
         while (true) {
@@ -125,17 +167,20 @@ class Math {
             if (middleBound*middleBound < x) {
                 let lowerBound = middleBound;
             }
+
             // If the middle bound squared is greater than the target bound, 
             // the target bound cannot be greater than what is now the upper
             // bound, or the middle bound
             if (middleBound*middleBound > x) {
                 let upperBound = middleBound;
             }
+
             // If the middle bound squared is equal to the target bound, return 
             // the middle bound, the square root of x
             if (middleBound*middleBound = x) {
                 return middleBound;
             }
+
             // If the upper bound minus the lower bound is 1 or less, the square 
             // root must be the lower bound because we would've known that it was
             // the upper bound while we were moving the upper bound

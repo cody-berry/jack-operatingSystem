@@ -1,4 +1,34 @@
                                                                               .
+08:45 am Thursday, July 13, 2023
+[0845]→	Mathematical Operations
+	Division methods
+		1) Repetitive subtraction! But this is really inefficient. O(N).
+		2) What did we learn in school? Long division. 
+			175 divided by 3. 
+			What is the largest number x from 10s so that 3x <= 175?
+			50 is the answer. 
+			It's between 50 and 60. 
+			We have a remainder of 25. 
+			What is the largest integer x from 1s so that 3x <= 25?
+			It must be at least 58. 
+			1 is less than 3. 
+			It's basically logN.
+		3) This is another division algorithm. 
+			Suppose we don't know what 100/7 is.
+			But it's twice as much as 100/14. 
+			That's twice as much as 100/28. 
+			That's twice as much as 100/56.
+			It's proportional to logN.
+			It's only addition and subtraction!
+	Square root
+		1) Pretty much the only algorithm is binary search.
+			2 appealing properties. 
+			1) It's inverse can be easily computed.
+			2) It's a monotonically increasing function.
+			Therefore, it can be computed using binary search.
+			
+
+
 
 01:39 pm Monday, July 10, 2023
 [1339]→	Efficiency Matters
@@ -14,7 +44,7 @@
 			Add up only those rows.
 			Runtime: O(log(n)).
 			We can easily implement this in hardware.
-			
+
 
 
 12:34 pm Monday, July 10, 2023
