@@ -152,20 +152,49 @@ class Math {
      */
     function int divide(int x, int y) {
         var int q;
+        var int absX, absY, numNegatives;
+
+        do Output.printInt(x);
+        do Output.printString("/");
+        do Output.printInt(y);
+        do Output.println();
+
+        let absX = Math.abs(x);
+        let absY = Math.abs(y);
+
         // this is a recursive algorithm.
         // base case: if y is more than x, then the floor of x/y is 0.
-        if (y > x) {
+        if (absY > absX) {
             return 0;
         }
 
+        let numNegatives = 0;
+        if (~(absX = x)) {
+            let numNegatives = 1;
+        }
+        if (~(absY = y)) {
+            let numNegatives = numNegatives + 1;
+        }
+        if (numNegatives = 2) {
+            let numNegatives = 0;
+        }
+
         // if we don't know what x/y is, we do know that it's 2x/(2*y)
-        let q = Math.divide(x, y+y);
+        let q = absX/(absY+absY);
 
         // determine whether we add one from dividing by 2
-        if ((x - ((q+q)*y)) < y) {
-            return q + q;
+        if ((absX - ((q+q)*absY)) < absY) {
+            if (numNegatives) {
+                return -q - q;
+            } else {
+                return q + q;
+            }
         } else {
-            return q + q + 1;
+            if (numNegatives) {
+                return -q - q - 1;
+            } else {
+                return q + q + 1;
+            }
         }
     }
 
