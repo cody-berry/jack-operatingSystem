@@ -8,10 +8,26 @@
  * Note: Jack compilers implement multiplication and division using OS method calls.
  */
 class Math {
-
+    static Array twoToThe;
     /** Initializes the library. */
     function void init() {
-        return; // nothing needed
+        let twoToThe = Array.new(15);
+        let twoToThe[0] = 1;
+        let twoToThe[1] = 2;
+        let twoToThe[2] = 4;
+        let twoToThe[3] = 8;
+        let twoToThe[4] = 16;
+        let twoToThe[5] = 32;
+        let twoToThe[6] = 64;
+        let twoToThe[7] = 128;
+        let twoToThe[8] = 256;
+        let twoToThe[9] = 512;
+        let twoToThe[10] = 1024;
+        let twoToThe[11] = 2048;
+        let twoToThe[12] = 4096;
+        let twoToThe[13] = 8192;
+        let twoToThe[14] = 16384;
+        return;
     }
 
     /** Returns the absolute value of x. 
@@ -78,8 +94,8 @@ class Math {
         var int digitToConsider, i, copyX;
         var Array result;
 
-        // add the digit that we're considering
-        let digitToConsider = 16384;
+        do Output.printInt(x);
+        do Output.println();
 
         // add the result, a list of 16 bits
         let result = Array.new(16);
@@ -95,7 +111,7 @@ class Math {
             let result[i] = 0;
         }
 
-        // if the number is negative, add 32768.
+        // if the number is less than 0, add 32768
         if (copyX < 0) {
             let copyX = copyX + 32767 + 1;
             let result[15] = 1;
@@ -103,18 +119,17 @@ class Math {
 
         // while the number of iterations is less than 16...
         while (i < 15) {
+            // add the digit we're considering
+            let digitToConsider = twoToThe[14-i];
+
             // if x is greater than the digit we're considering, subtract the digit
             // we're considering from the number, and set the respective element
             // of the result to 1.
-            do Output.printInt(copyX);
-            do Output.println();
             if ((copyX > digitToConsider) | (copyX = digitToConsider)) {
                 let copyX = copyX - digitToConsider;
                 let result[14-i] = 1;
             }
 
-            // halve the digit we're considering.
-            let digitToConsider = digitToConsider/2;
             let i = i + 1;
         }
 
@@ -124,6 +139,7 @@ class Math {
             do Output.printInt(result[i]);
             let i = i + 1;
         }
+        do Output.println();
 
         // return the result
         return result;
@@ -135,14 +151,22 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+        var int q;
         // this is a recursive algorithm.
         // base case: if y is more than x, then the floor of x/y is 0.
+        if (y > x) {
+            return 0;
+        }
 
         // if we don't know what x/y is, we do know that it's 2x/(2*y)
-        
-        // determine whether we add one from dividing by 2
+        let q = Math.divide(x, y+y);
 
-        return 0; // haven't implemented
+        // determine whether we add one from dividing by 2
+        if ((x - ((q+q)*y)) < y) {
+            return q + q;
+        } else {
+            return q + q + 1;
+        }
     }
 
     /** Returns the integer part of the square root of x. */
