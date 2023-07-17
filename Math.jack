@@ -52,11 +52,6 @@ class Math {
         var Array binaryY;
         var int sum, shiftedX, i;
 
-        do Output.printInt(x);
-        do Output.printString("*");
-        do Output.printInt(y);
-        do Output.println();
-
         // convert y to binary
         let binaryY = Math.convertToBin(y);
 
@@ -94,9 +89,6 @@ class Math {
         var int digitToConsider, i, copyX;
         var Array result;
 
-        do Output.printInt(x);
-        do Output.println();
-
         // add the result, a list of 16 bits
         let result = Array.new(16);
 
@@ -133,14 +125,6 @@ class Math {
             let i = i + 1;
         }
 
-        // print the result.
-        let i = 0;
-        while (i < 16) {
-            do Output.printInt(result[i]);
-            let i = i + 1;
-        }
-        do Output.println();
-
         // return the result
         return result;
     }
@@ -153,11 +137,6 @@ class Math {
     function int divide(int x, int y) {
         var int q;
         var int absX, absY, numNegatives;
-
-        do Output.printInt(x);
-        do Output.printString("/");
-        do Output.printInt(y);
-        do Output.println();
 
         let absX = Math.abs(x);
         let absY = Math.abs(y);
@@ -205,8 +184,8 @@ class Math {
         // Lower bound is 0
         let lowerBound = 0;
 
-        // Upper bound is minimum of x and 382
-        let upperBound = Math.min(x, 382);
+        // Upper bound is minimum of x and 181
+        let upperBound = Math.min(x, 182);
 
         // Middle bound is average of lower bound and upper bound
         let middleBound = (lowerBound + upperBound)/2;
@@ -214,6 +193,12 @@ class Math {
         // End of initialization
         // Repeat the following forever:
         while (true) {
+            do Output.printInt(middleBound);
+            do Output.printString("*");
+            do Output.printInt(middleBound);
+            do Output.printString("=");
+            do Output.printInt(middleBound*middleBound);
+            do Output.println();
             // If the middle bound squared is less than the target bound, 
             // the target bound cannot be less than what is now the left bound,
             // or the middle bound
