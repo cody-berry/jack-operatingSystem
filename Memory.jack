@@ -10,12 +10,19 @@
  */ 
 class Memory {
     static Array ram;
+    static Array heap;
+    static int freeList;
 
     /** Initializes the class. */
     function void init() {
         // most other languages don't allow this, but Jack has weak typing.
         // this lets us set the base address of ram to 0. 
         let ram = 0; 
+
+        let heap = 2048;
+        let freeList = 2048;
+        let heap[0] = 0;
+        let heap[1] = 14355;
         return;
     }
 
@@ -33,6 +40,14 @@ class Memory {
     /** Finds an available RAM block of the given size and returns
      *  a reference to its base address. */
     function int alloc(int size) {
+        // iterate through the free list by accessing heap[1] and following
+        // the ram. search for a block with size + 2.
+
+            // start with the next base address.
+
+            // if the length is size + 2 or greater, return that block.
+
+        // if nothing is found, halt the program.=
         return 0;
     }
 
