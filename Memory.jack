@@ -40,14 +40,36 @@ class Memory {
     /** Finds an available RAM block of the given size and returns
      *  a reference to its base address. */
     function int alloc(int size) {
+        var int nextBaseAddress, previousBaseAddress;
+
         // iterate through the free list by accessing heap[1] and following
         // the ram. search for a block with size + 2.
+        let nextBaseAddress = freeList;
+        let previousBaseAddress = 0;
 
+        while (nextBaseAddress > 0) {
             // start with the next base address.
-
             // if the length is size + 2 or greater, return that block.
+            if (Memory.peek(nextBaseAddress + 1) > (size + 1)) {
+                if (previousBaseAddress > 0) {
+                    do Memory.poke(previousBaseAddress, nextBaseAddress + size);
+                } else {
+                    let freeList = freeList + size;
+                }
 
-        // if nothing is found, halt the program.=
+                let ram[nextBaseAddress + size] = ram[nextBaseAddress];
+                let ram[nextBaseAddress + size + 1] = ram[nextBaseAddress + 1] - size;
+                let ram[nextBaseAddress] = 0;
+                let ram[nextBaseAddress + 1] = 0;
+                return nextBaseAddress;
+            }
+            
+            let previousBaseAddress = nextBaseAddress;
+            let nextBaseAddress = Memory.peek(nextBaseAddress);
+        }
+
+        // if nothing is found, halt the program.
+        do Sys.halt();
         return 0;
     }
 
