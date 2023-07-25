@@ -43,13 +43,39 @@ class Screen {
 
     /** Draws the (x,y) pixel, using the current color. */
     function void drawPixel(int x, int y) {
+        var int address, value, partOfWord, power, appropriateBit;
 
         // determine the address
+        let address = (32*y) + (x/16) + 16384;
 
         // determine the value of the word in the screen
+        let value = Memory.peek(address);
 
         // use the or/not operator(s) to set the (x % 16)ᵗʰ bit of value
         // to the current color
+        let partOfWord = (x) - ((x/16)*16);
+        let appropriateBit = 1;
+        let power = 0;
+        while (power < partOfWord) {
+            let appropriateBit = appropriateBit + appropriateBit;
+            let power = power + 1;
+        }
+
+        if (color) {
+            let value = value | appropriateBit; // turns the pixel on
+        } else {
+            let value = ~value;
+
+            // turns the pixel on after reversing it
+            let value = value | appropriateBit; 
+
+            // reverses the pixels so that all pixels stay the same in
+            // the end except for the one to turn off, which is now off
+            let value = ~value;
+        }
+
+        // now poke the value into the address
+        do Memory.poke(address, value);
 
         return;
     }
