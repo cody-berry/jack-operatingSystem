@@ -82,6 +82,16 @@ class Screen {
 
     /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
     function void drawLine(int x1, int y1, int x2, int y2) {
+        // set a, b, and diff to 0
+
+        // set dy and dx to the distances
+
+        // while we're not done...
+
+            // draw the pixel
+
+            // decide whether to go right or up
+
         return;
     }
 
