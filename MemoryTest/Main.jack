@@ -35,18 +35,18 @@ class Main {
 			let err = err + 10; }
         do Memory.poke(8004, c[499]+err); // RAM[8004] = 100
         
-        // do a.dispose();                   // uses Memory.deAlloc
-        // do b.dispose();
+        do a.dispose();                   // uses Memory.deAlloc
+        do b.dispose();
         
-		// let err = 0;
-        // let b = Array.new(3);
-        // let b[0] = c[499] - 90;
-		// if (b = c) {					     // Fail compare if b = c
-		// 	let err = 1; }
-        // do Memory.poke(8005, b[0] + err); // RAM[8005] = 10
+		let err = 0;
+        let b = Array.new(3);
+        let b[0] = c[499] - 90;
+		if (b = c) {					     // Fail compare if b = c
+			let err = 1; }
+        do Memory.poke(8005, b[0] + err); // RAM[8005] = 10
         
-        // do c.dispose();
-        // do b.dispose();
+        do c.dispose();
+        do b.dispose();
         
         return;
     }
