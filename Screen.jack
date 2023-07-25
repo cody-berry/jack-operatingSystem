@@ -15,6 +15,7 @@ class Screen {
     /** Initializes the Screen. */
     function void init() {
         let color = false;
+        return;
     }
 
     /** Erases the entire screen. */
@@ -42,6 +43,14 @@ class Screen {
 
     /** Draws the (x,y) pixel, using the current color. */
     function void drawPixel(int x, int y) {
+
+        // determine the address
+
+        // determine the value of the word in the screen
+
+        // use the or/not operator(s) to set the (x % 16)ᵗʰ bit of value
+        // to the current color
+
         return;
     }
 
