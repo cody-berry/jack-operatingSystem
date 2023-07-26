@@ -143,6 +143,19 @@ class Screen {
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      * and bottom right corner is (x2,y2), using the current color. */
     function void drawRectangle(int x1, int y1, int x2, int y2) {
+        var int x, y;
+        // iterate through all ys.
+        let y = y1;
+        while ((y < y2) | (y = y2)) {
+            // iterate through all xs. 
+            let x = x1;
+            while ((x < x2) | (x = x2)) {
+                // draw the pixel.
+                do Screen.drawPixel(x, y);
+                let x = x + 1;
+            }
+            let y = y + 1;
+        }
         return;
     }
 
