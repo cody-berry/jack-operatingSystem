@@ -161,6 +161,12 @@ class Screen {
 
     /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
     function void drawCircle(int x, int y, int r) {
+        // while the difference in y is less than r...
+
+            // draw a line with a y-coordinate of y + the difference in y
+
+            // 
+
         return;
     }
 }
