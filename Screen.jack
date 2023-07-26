@@ -14,7 +14,7 @@ class Screen {
 
     /** Initializes the Screen. */
     function void init() {
-        let color = false;
+        let color = true;
         return;
     }
 
@@ -82,15 +82,60 @@ class Screen {
 
     /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
     function void drawLine(int x1, int y1, int x2, int y2) {
+        var int a, b, diff, dy, dx, temp;
         // set a, b, and diff to 0
+        let a = 0;
+        let b = 0;
+        let diff = 0;
+
+        // swap positions if x2 is less than x1
+        if (x2 < x1) {
+            let temp = x2;
+            let x2 = x1;
+            let x1 = temp;
+            let temp = y2;
+            let y2 = y1;
+            let y1 = temp;
+        }
 
         // set dy and dx to the distances
+        // reverse dy if it is negative
+        let dy = y2 - y1;
+        if (dy < 0) {
+            let dy = -dy;
+        }
+        let dx = x2 - x1;
 
-        // while we're not done...
-
-            // draw the pixel
-
-            // decide whether to go right or up
+        // are we going southeast or northeast?
+        if (y2 > y1) {
+            // while we're not done...
+            while (((a < dx) | (a = dx)) & ((b < dy) | (b = dy))) {
+                // draw the pixel
+                do Screen.drawPixel(x1 + a, y1 + b);
+    
+                // decide whether to go right or up
+                if (diff < 0) {let a = a + 1; let diff = diff + dy;}
+                if (diff > 0) {let b = b + 1; let diff = diff - dx;}
+                if (diff = 0) {
+                    if ((dy - b) > (dx - a)) {let b = b + 1; let diff = diff - dx;}
+                    else                     {let a = a + 1; let diff = diff + dy;}
+                }
+            }
+        } else {
+            // while we're not done...
+            while (((a < dx) | (a = dx)) & ((b > dy) | (b = dy))) {
+                // draw the pixel
+                do Screen.drawPixel(x1 + a, y1 + b);
+    
+                // decide whether to go right or up
+                if (diff < 0) {let a = a + 1; let diff = diff + dy;}
+                if (diff > 0) {let b = b - 1; let diff = diff - dx;}
+                if (diff = 0) {
+                    if ((dy - b) > (dx - a)) {let b = b - 1; let diff = diff - dx;}
+                    else                     {let a = a + 1; let diff = diff + dy;}
+                }
+            }
+        }
 
         return;
     }
