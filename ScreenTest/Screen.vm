@@ -251,7 +251,7 @@ eq
 or
 push local 1
 push local 3
-gt
+lt
 push local 1
 push local 3
 eq
@@ -264,7 +264,7 @@ push local 0
 add
 push argument 1
 push local 1
-add
+sub
 call Screen.drawPixel 2
 pop temp 0
 push local 2
@@ -290,7 +290,7 @@ goto IF_FALSE8
 label IF_TRUE8
 push local 1
 push constant 1
-sub
+add
 pop local 1
 push local 2
 push local 4
@@ -315,7 +315,7 @@ goto IF_FALSE10
 label IF_TRUE10
 push local 1
 push constant 1
-sub
+add
 pop local 1
 push local 2
 push local 4

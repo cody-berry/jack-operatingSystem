@@ -123,15 +123,15 @@ class Screen {
             }
         } else {
             // while we're not done...
-            while (((a < dx) | (a = dx)) & ((b > dy) | (b = dy))) {
+            while (((a < dx) | (a = dx)) & ((b < dy) | (b = dy))) {
                 // draw the pixel
-                do Screen.drawPixel(x1 + a, y1 + b);
+                do Screen.drawPixel(x1 + a, y1 - b);
     
                 // decide whether to go right or up
                 if (diff < 0) {let a = a + 1; let diff = diff + dy;}
-                if (diff > 0) {let b = b - 1; let diff = diff - dx;}
+                if (diff > 0) {let b = b + 1; let diff = diff - dx;}
                 if (diff = 0) {
-                    if ((dy - b) > (dx - a)) {let b = b - 1; let diff = diff - dx;}
+                    if ((dy - b) > (dx - a)) {let b = b + 1; let diff = diff - dx;}
                     else                     {let a = a + 1; let diff = diff + dy;}
                 }
             }
