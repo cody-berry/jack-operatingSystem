@@ -43,7 +43,22 @@ class Keyboard {
      * of the pressed key.
      */
     function char readChar() {
-        return "2";
+        var char c;
+
+        do Output.printChar(95);
+
+        // while there is no key pressed, do nothing.
+        while (~Keyboard.keyPressed()) {}
+
+        // when a key is pressed, print it out and set c to it.
+        let c = Keyboard.keyPressed();
+        do Output.backSpace();
+        do Output.printChar(c);
+
+        // while the key is still down, do nothing.
+        while (Keyboard.keyPressed() = c) {}
+
+        return c;
     }
 
     /**								
