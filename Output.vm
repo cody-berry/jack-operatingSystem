@@ -1638,7 +1638,50 @@ push constant 0
 return
 function Output.println 0
 push constant 0
+pop static 1
+push static 2
+push constant 1
+add
+pop static 2
+push static 2
+push constant 23
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop static 2
+label IF_FALSE0
+push constant 0
 return
 function Output.backSpace 0
+push static 1
+push constant 1
+sub
+pop static 1
+push static 1
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 63
+pop static 1
+push static 2
+push constant 1
+sub
+pop static 2
+push static 2
+push constant 1
+neg
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 22
+pop static 2
+label IF_FALSE1
+label IF_FALSE0
 push constant 0
 return

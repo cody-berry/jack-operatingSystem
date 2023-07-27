@@ -268,11 +268,27 @@ class Output {
 
     /** Advances the cursor to the beginning of the next line. */
     function void println() {
+        // set cursorX to 0, and advance/wrap cursorY.
+        let cursorX = 0;
+        let cursorY = cursorY + 1;
+        if (cursorY = 23) {
+            let cursorY = 0;
+        }
+
         return;
     }
 
     /** Moves the cursor one column back. */
     function void backSpace() {
+        // backspace/wrap cursorX
+        let cursorX = cursorX - 1;
+        if (cursorX = -1) {
+            let cursorX = 63;
+            let cursorY = cursorY - 1;
+            if (cursorY = -1) {
+                let cursorY = 22;
+            }
+        }
         return;
     }
 }
