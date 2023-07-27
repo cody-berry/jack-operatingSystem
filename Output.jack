@@ -27,6 +27,7 @@ class Output {
         let cursorX = 0;
         let cursorY = 0;
         do Output.initMap();
+        return;
     }
 
     // Initializes the character map array
@@ -183,30 +184,76 @@ class Output {
      *  and erases the character displayed there. */
     function void moveCursor(int i, int j) {
         let cursorX = j; // the x-position is the column
-        let cursorY = i; // the y-position is the rowz
+        let cursorY = i; // the y-position is the row
         return;
     }
 
     /** Displays the given character at the cursor location,
      *  and advances the cursor one column forward. */
     function void printChar(char c) {
+        var Array charMap;
+        var int xPos, yPos, a, b, twoToTheB;
+        var int charMapElement;
+
+        // get the character map
+        let charMap = Output.getMap(c);
+
+        // assign the actual x position and y position
+        let xPos = cursorX * 8;
+        let yPos = cursorY * 11;
+
+        // iterate through all the pixels in the char map and display them.
+        let a = 0;
+        while (a < 11) {
+            let charMapElement = charMap[a];
+            let b = 0;
+            let twoToTheB = 1;
+            while (b < 8) {
+                if (charMapElement & twoToTheB) {
+                    do Screen.setColor(true);
+                    do Screen.drawPixel(xPos + b, yPos + a);
+                } else {
+                    do Screen.setColor(false);
+                    do Screen.drawPixel(xPos + b, yPos + a);
+                }
+                let twoToTheB = twoToTheB + twoToTheB;
+                let b = b + 1;
+            }
+            let a = a + 1;
+        }
+
+        // move one to the right and handle overflow
+        let cursorX = cursorX + 1;
+        if (cursorX = 64) {
+            let cursorX = 0;
+            let cursorY = cursorY + 1;
+            if (cursorY = 23) {
+                let cursorY = 0;
+            }
+        }
+
+        return;
     }
 
     /** displays the given string starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printString(String s) {
+        return;
     }
 
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
+        return;
     }
 
     /** Advances the cursor to the beginning of the next line. */
     function void println() {
+        return;
     }
 
     /** Moves the cursor one column back. */
     function void backSpace() {
+        return;
     }
 }
