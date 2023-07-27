@@ -256,6 +256,13 @@ class Output {
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
+        var String s;
+        // Convert the integer into a string, and call printString on it.
+        let s = String.new(6);
+        do s.setInt(i);
+
+        do Output.printString(s);
+
         return;
     }
 
