@@ -161,11 +161,22 @@ class Screen {
 
     /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
     function void drawCircle(int x, int y, int r) {
+        var int dy;
         // while the difference in y is less than r...
-
+        let dy = -r;
+        while ((dy < r) | (dy = r)) {
             // draw a line with a y-coordinate of y + the difference in y
+            // and use the Pythagorean Theorem to calculte the 
+            // x-coordinate
+            do Screen.drawLine(
+                    x - Math.sqrt((r*r) - (dy*dy)), 
+                    y + dy, 
+                    x + Math.sqrt((r*r) - (dy*dy)), 
+                    y + dy
+                );
 
-            // 
+            let dy = dy + 1;
+        }
 
         return;
     }
