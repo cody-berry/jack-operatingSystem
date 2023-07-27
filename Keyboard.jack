@@ -45,7 +45,7 @@ class Keyboard {
     function char readChar() {
         var char c;
 
-        do Output.printChar(95);
+        do Output.printChar(0);
 
         // while there is no key pressed, do nothing.
         while (~Keyboard.keyPressed()) {}
@@ -67,7 +67,40 @@ class Keyboard {
      * and returns its value. Also handles user backspaces.
      */
     function String readLine(String message) {
-        return "55";
+        var String s;
+        var char c;
+
+        // prints the message
+        do Output.printString(message);
+
+        // create an empty string
+        let s = String.new(10);
+
+        // repeat...
+        while (true) {
+            // read a character
+            let c = Keyboard.readChar();
+
+            // if the character is a new line, display a new line and return the string
+            if (c = String.newLine()) {
+                do Output.println();
+                return s;
+            }
+
+            // if the character is a back space, remove the last character and output 
+            // backspace
+            else {
+                if (c = String.backSpace()) {
+                    do s.eraseLastChar();
+                }
+                // otherwise, append c to str. 
+                else {
+                    do s.appendChar(c);
+                }
+            }
+        }
+
+        return "ERR";
     }   
 
     /**								
