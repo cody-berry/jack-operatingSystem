@@ -238,6 +238,18 @@ class Output {
     /** displays the given string starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printString(String s) {
+        var int stringLength, i;
+
+        // find the string length
+        let stringLength = s.length();
+
+        // iterate through each character. for each one, call printChar()
+        let i = 0;
+        while (i < stringLength) {
+            do Output.printChar(s.charAt(i));
+            let i = i + 1;
+        }
+
         return;
     }
 
