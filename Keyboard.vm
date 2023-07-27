@@ -1,0 +1,24 @@
+function Keyboard.init 0
+push constant 0
+return
+function Keyboard.keyPressed 0
+push constant 24576
+call Memory.peek 1
+return
+function Keyboard.readChar 0
+push constant 1
+call String.new 1
+push constant 50
+call String.appendChar 2
+return
+function Keyboard.readLine 0
+push constant 2
+call String.new 1
+push constant 53
+call String.appendChar 2
+push constant 53
+call String.appendChar 2
+return
+function Keyboard.readInt 0
+push constant 0
+return
