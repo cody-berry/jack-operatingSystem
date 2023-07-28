@@ -83,7 +83,6 @@ class Keyboard {
 
             // if the character is a new line, display a new line and return the string
             if (c = String.newLine()) {
-                do Output.println();
                 return s;
             }
 
@@ -100,7 +99,7 @@ class Keyboard {
             }
         }
 
-        return "ERR";
+        return "3";
     }   
 
     /**								
@@ -110,6 +109,38 @@ class Keyboard {
      * entered text is detected). Also handles user backspaces. 
      */
     function int readInt(String message) {
+        var String s;
+        var char c;
+
+        // prints the message
+        do Output.printString(message);
+
+        // create an empty string
+        let s = String.new(6);
+
+        // repeat...
+        while (true) {
+            // read a character
+            let c = Keyboard.readChar();
+
+            // if the character is a back space, remove the last character and output 
+            // backspace
+            if (c = String.backSpace()) {
+                do s.eraseLastChar();
+            }
+            else {
+                // if the character is not an integer or "-", display a new line and return 
+                // the string
+                if (~(((c > 47) & (c < 58)) | (c = 45))) {
+                    return s.intValue();
+                }
+                // otherwise, append c to str. 
+                else {
+                    do s.appendChar(c);
+                }
+            }
+        }
+
         return 0;
     }
 }
