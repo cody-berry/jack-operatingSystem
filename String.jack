@@ -66,26 +66,98 @@ class String {
     /** Returns the integer value of this string, 
      *  until a non-digit character is detected. */
     method int intValue() {
-        return 0;
+        var int i, j, result;
+
+        // the value starts at 0
+        let result = 0;
+
+        // is the string negative? check first character
+        if (charAt(j) = 45) {
+            // if it's negative, iterate through every element of the string other
+            // than the first.
+            let j = 1;
+            while (j < length) {
+                // set i to the integer value of that character (0 is 48, 1 is 49,
+                // so on)
+                let i = str[j] - 48;
+
+                // multiply result by 10 and add d to represent adding a number to
+                // the end
+                let result = (result*10) + i;
+
+                let j = j + 1;
+            }
+
+            // in the end, return -result because the string is negative.
+            return -result;
+        }
+
+
+        // otherwise, do the same thing except iterating through every element of
+        // the string and returning the positive result.
+        let j = 0;
+        while (j < length) {
+            let i = str[j] - 48;
+
+            let result = (result*10) + i;
+
+            let j = j + 1;
+        }
+        return result;
     }
 
     /** Sets this string to hold a representation of the given value. */
     method void setInt(int val) {
+        // reset the string
+        while (length > 0) {
+            do eraseLastChar();
+        }
+
+        do int2String(val);
+        return;
+    }
+
+    /** A recursive method that appends the digits of an int to this string. */
+    method void int2String(int val) {
+        var int lastDigit;
+        var int c;
+        // take the last digit
+        let lastDigit = val - ((val/10) * 10);
+
+        // if the number is negative, append the char
+        // representing "-"
+        if (val < 0) {
+            do appendChar(45);
+            let val = -val;
+
+            // negate the last digit
+            let lastDigit = -lastDigit;
+        }
+
+        // get the character representing that digit
+        let c = lastDigit + 48;
+
+        // stop if the value is 1 digit
+        if (val < 10) {
+        } else { // otherwise recall this fucntion
+            do int2String(val/10);
+        }
+        do appendChar(c);
         return;
     }
 
     /** Returns the new line character. */
     function char newLine() {
-        return 0;
+        return 128;
     }
 
     /** Returns the backspace character. */
     function char backSpace() {
-        return 0;
+        return 129;
     }
 
     /** Returns the double quote (") character. */
     function char doubleQuote() {
-        return 0;
+        return 34;
     }
 }
