@@ -28,6 +28,13 @@ class Sys {
 
     /** Waits approximately duration milliseconds and returns.  */
     function void wait(int duration) {
+        var int frames, iterations;
+        let iterations = 0;
+        while (iterations < 100) {
+            let frames = 0;
+            while (frames < duration) {let frames = frames + 1;}
+            let iterations = iterations + 1;
+        }
         return;
     }
 
