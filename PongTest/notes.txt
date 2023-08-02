@@ -1,0 +1,389 @@
+                                                                              .
+08:45 am Thursday, July 13, 2023
+[0845]→	Mathematical Operations
+	Division methods
+		1) Repetitive subtraction! But this is really inefficient. O(N).
+		2) What did we learn in school? Long division. 
+			175 divided by 3. 
+			What is the largest number x from 10s so that 3x <= 175?
+			50 is the answer. 
+			It's between 50 and 60. 
+			We have a remainder of 25. 
+			What is the largest integer x from 1s so that 3x <= 25?
+			It must be at least 58. 
+			1 is less than 3. 
+			It's basically logN.
+		3) This is another division algorithm. 
+			Suppose we don't know what 100/7 is.
+			But it's twice as much as 100/14. 
+			That's twice as much as 100/28. 
+			That's twice as much as 100/56.
+			It's proportional to logN.
+			It's only addition and subtraction!
+	Square root
+		1) Pretty much the only algorithm is binary search.
+			2 appealing properties. 
+			1) It's inverse can be easily computed.
+			2) It's a monotonically increasing function.
+			Therefore, it can be computed using binary search.
+			
+
+
+
+01:39 pm Monday, July 10, 2023
+[1339]→	Efficiency Matters
+	We want to be efficient!
+	Multiplication
+		In some class..."let x = 419 * 5003;". 
+		That is replaced by "let x = Math.multiply(419, 5003)"
+		1) Repetitive addition. This is really inefficient. O(N).
+		2) What did we learn in elementary school?
+			Do this in binary.
+			Take x and write it down.
+			Shift x one position to the left, then again and so on and so forth.	
+			Add up only those rows.
+			Runtime: O(log(n)).
+			We can easily implement this in hardware.
+
+
+
+12:34 pm Monday, July 10, 2023
+[1234]→	Project 12: Building the OS
+	The OS consists of 8 classes. Each is designed to service some functionality.
+	The OS is nothing more than an obstruction.
+	We're going to find 3 different implementations of the same obstructions:
+		1) VM emulator: Features a built-in Java OS implementation.
+		2) Tools OS: This is an OS implementation in VM. 
+		3) Our implementation! 
+	The OS consists of any number of modules with high inter-dependency.
+	For each module in the OS, implement the module separately, using the remaining n-1 moduloes to service it. 
+	Development:
+		1) Put the files "Main.jack" and the other jack file in a directory.
+		2) Compile the directory.
+		3) Execute the directory in the VM emulator.
+	Stepwide:
+		Memory, Array, Math: develop/test separately using supplied jack, tst, and cmp files
+		Screen, Output, String, Keyboard, Sys: develop/test separately, using supplied jack programs
+		Can be developed in any order.
+		Final test:
+			1) Make a copy of the directory nand2tetris/projects/11/Pong
+			2) Copy the 8 compiled files of your OS into this directory
+			3) Execute the test. 
+
+
+                                                                              
+                                                                               .
+03:11 pm Wednesday, December 28, 2022
+[1511]→	Unit 7.1: More Fun To Go
+In module 7, we will look back to our compiler and add extensions! 
+A extension starts with a design. Norm and Shockin were the designers, while we were the system developers.
+What makes a good design good?
+	1) Obvious things: Modularity, simplicity, elegance, clarity, beauty
+	How do you improve multiplying and dividing? By using a hardware chip!
+		Bit shifting can also speed up multiplying and dividing.
+Improvements:
+	1) Make a hardware chip for multiplying and dividing
+	2) Add bit shifting
+	3) Combine VM translator and compiler or just spot patterns in VM translator
+
+10:42 am Friday, December 30, 2022
+[1042]→	Unit 7.2: More Fun To Go
+How to add mass storage and network access to Hack?
+	Assume that we have devices like hard disks and network cards.
+		If we have things like hard disks, you can store and load programs!
+		We must tinker with hardware and we need to store programs somehow.
+		We must specify a simple file system.
+		We must develop an OS class that loads and stores files.
+		If we have network cards, we can interact with other computers!
+		The chip should connect with the hardware from one end.
+		The chip should also connect with a socket on your actual PC.
+		We must develop an OS class that transports bits between different computers.
+
+                                                                               .
+
+05:28 pm Monday, December 12, 2022
+[1728]→	⊼₂ Unit 6.2: Efficiency Matters
+Numerous applications will use the OS. Make sure that these methods are as 
+efficient as possible! For example, multiplication.
+let x = 419*5003 is the same as let x=Math.multiply(419, 5003);
+Math.multiply: Multiply binary!
+
+02:59 pm Monday, December 12, 2022
+
+⊼₂ Unit 6.1 Operating System
+
+Typical OS services include 
+	mathmetical operations
+	abstract data types
+	input functions
+	textual output
+	graphics output
+
+System oriented services include 
+	file systems
+	memory managements
+	drivers
+	UI management
+	multi-tasking
+	networking
+    security 
+
+The OS classes:
+1) Math provides mathematics functions like absolute value and multiply. 
+2) Memory contains functions that access the RAM. 
+3) Screen contains functions that can draw polygons.
+4) Output will write text on the screen.
+5) Keyboard interacts with the user.
+6) String provides string processing services like Java's.
+7) Array provides array processing services, but arrays are very similar to 
+   objects.
+8) Sys provides some useful algorithms.
+
+ 
+
+
+
+05:37 pm Saturday, December 24, 2022
+[1737]→	Unit 6.14: Perspective
+The major differences between the jack OS and regular OSs?
+	1) Our OS doesn't support multithreading or multiprocessing.
+	2) The kernal of OS systems is to do exactly debt.
+	3) No file systems!
+	4) Our OS doesn't support either command-line shells or Windows systems.
+Why can our OS support anything?
+	1) Users are expecetd to treat hardware and software as labrotories.
+	2) Accessing OS function calls is more elaborate than a function call.
+How efficient is our OS?
+	1) The main is Math and Graphics, which are efficient.
+	2) Division and multiplication is good. Differences:
+		 1) Typically these are implemented in hardware.
+		 2) These are mostly the same ideas.
+	3) What about graphics? They are efficient. Differences:
+		 1) Typically these are implemented by software and GPUs.
+
+
+
+05:19 pm Saturday, December 24, 2022
+[1719]→	Unit 6.13: Project 12: Building the OS
+For each operating system file that we're going to develop, we use the other n-1 executable modules to service it.
+Screen, Output, String, Keyboard, Sys: Develop/test seperately using Main.jack.
+Memory, Array, Math: develop/test separately, using supplied .jack/.tst/.cmp
+Final test:
+1. Make a copy of the directory nand2tetris/projects/11/Pong
+2. copy the 8 compiled folders there
+3. Test!
+
+12:26 pm Friday, December 23, 2022
+[1226]→	Unit 6.12: The Sys Class
+Hardware contract: When the computer is reset, start with ROM[0]
+VM contract: Set SP to 26 and call Sys.init
+Jack contract: Program execution starts with Main.main()
+OS contract: Sys.init should initialize the OS, and then call Main.main().
+init():
+Go through everyone who has an init function and initialize them.
+Then call Main.main().
+halt():
+Stop the computer and freeze it.
+wait():
+Waits for duration milliseconds. 
+error():
+Gets an error code, then prints it out.
+
+
+12:20 pm Friday, December 23, 2022
+[1220]→	Unit 6.11: Array Processing
+
+11:57 am Friday, December 23, 2022
+[1157]→	Unit 6.10: String Processing
+new():
+let str = Array.new(maxLength)
+let length = 0
+return this
+
+dispose():
+
+length():
+
+charAt():
+
+setCharAt():
+
+appendChar():
+
+eraseLastChar():
+
+intValue():
+val = 0
+for each character in the string, we compute the integer value of str[i] and make value what it is times 10 plus this integer value.
+returan val
+
+setInt():
+lastDigit = val%10
+c=character representing lastDigit
+if the value is less then 10, then we return c as a string
+otherwise, we return teh value of int2string of val/10 plus c.
+
+newLine():
+
+backSpace():
+
+doubleQuote():
+
+
+03:43 pm Thursday, December 22, 2022
+[1543]→	Unit 6.9: Input
+RAM[24576] is the keyboard. Each keyboard press's ASCII code will be displayed in RAM[24576].
+Mappings:
+ , |, ", #, $, %, &, ', (, ), *, +, ,, -, ., / = 32-47
+0, 1, ..., 9 = 48-57
+:, ;, <, =, >, ?, @ = 58-64
+A, B, C, ..., Z = 65-90
+[, /, ], ^, _, ` = 91-96
+a, b, c, ..., z = 97-122
+{, |, }, ~ = 123-126
+newline, backspace, left arrow, up arrow, right arrow, down arrow, home, end, page-up, page-down, insert, delete, esc = 128-140
+f1, f2, f3, ..., f12 = 141-152
+keyPressed():
+This is basically Ram[24576]
+
+readChar():
+Display the cursor
+While keyPressed is 0, we do nothing.
+c=code of the curerntely pressed key.
+While the key is down, do nothing. After that, we can give them what they pressed.
+
+readLine():
+str = empty string
+repeat c=readChar(), and if it is enter, we want to display new-line and change the string. If c is backspace, there is a funcction in output which is called 'backspace'.
+
+
+02:38 pm Thursday, December 22, 2022
+[1438]→	Unit 6.8: Handling Textual Output
+Graphics: 256 by 512 pixels for drawing lines, circles, pixels, and things like that
+Textual: 23 rows of 64 characters. This is because each character is 11 pixels high and 8 pixels wide. 2 emty columns and 1 row at the bottom. 
+We have charMaps!
+initMap:
+charMaps is a new 127 characters. 
+create(index, a, b, c, d, e, f, g, h, i, j, k):
+map = Array.new(11)
+let charMaps[index] = map
+map[0], map[1], map[2], map[3], map[4], map[5], map[6], map[7], map[8], map[9], map[10] = a, b, c, d, e, f, g, h, i, j, k
+return
+What about the cursor?
+new line: move cursor
+backspace: move cursor backwards
+any other printable character: display the character, move cursor one column to right
+
+
+03:22 pm Wednesday, December 21, 2022
+[1522]→	Unit 6.7: Line Drawing
+
+drawLine(x, y, dx, dy):
+a=0, b=0, diff=0
+while a<dx and b<dy:
+	drawPixel(x+a, y+b)
+	if diff < 0: a=a+1, diff=diff+dy
+	else: b=b+1, diff=diff-dx
+03:09 pm Wednesday, December 21, 2022
+[1509]→	Unit 6.6: Graphics
+
+drawPixel():
+Grab the x and y coordinates. Then grab the x modulo 16th bit of the value to the current color, somehow. 
+address = 32*y + x/16
+value=Memory.peek[16384 + address]
+set the (x % 16)th bit of value to the current color
+do Memory.poke(address, value)
+
+drawCircle(x, y, r):
+dy=-r.
+while dy < r:
+	a = x-√(r²-dy²)
+	b=y+dy
+	drawLine(a, b, 2*a, 0)
+	r += 1
+
+02:33 pm Wednesday, December 21, 2022
+[1433]→	Unit 6.5: Heap Management
+init():
+Already implemented: 'ram=0', static array ram
+Free should be set to the heap base. Now we can use our whole heap. 
+Use a linked list to keep track of available heap segments.
+
+alloc(size):
+iterate through the linked list to find a block of size size+2. keep the smallest that is greater than equal to size+2 in mind.
+otherwise
+block = free
+free = free + size
+return block
+
+deAlloc(o):
+take the block and add it to the freeList
+
+
+02:20 pm Wednesday, December 21, 2022
+[1420]→	Unit 6.4: Memory Access
+peek():
+256-2048: Stack
+2048-16384: Heap
+16384-24577: I/O memory maps
+24577-32767: Unused area
+Using a static array ram, create an init function that says 'ram=0'.
+Return ram[i].
+
+poke():
+Set ram[i] to value and return.
+
+
+
+05:21 pm Saturday, December 17, 2022
+[1721]→	⊼₂ Unit 6.3: Mathematical Operations 
+multiply():
+In Unit 6.2.
+
+division():
+The naive way is to count how many times we can add b to itself to get a, 
+with a/b. The correct way is with long division. The one that we're going to 
+use in our operating system is the following: Take 100/7. We don't know the 
+answer, but we know it's 50*2/7. We know that's 25*2*2/7. We know that's 
+about 12*2*2*2/7. We know that's 6*2*2*2*2/7. And you get the picture.
+
+sqrt():
+Binary search! Use x*x and see if it is less or greater than the answer.
+
+
+05:28 pm Monday, December 12, 2022
+[1728]→	⊼₂ Unit 6.2: Efficiency Matters
+Numerous applications will use the OS. Make sure that these methods are as 
+efficient as possible! For example, multiplication.
+let x = 419*5003 is the same as let x=Math.multiply(419, 5003);
+Math.multiply: Multiply binary!
+
+02:59 pm Monday, December 12, 2022
+[1459]→ ⊼₂ Unit 6.1 Operating System
+
+Typical OS services include 
+	mathmetical operations
+	abstract data types
+	input functions
+	textual output
+	graphics output
+
+System oriented services include 
+	file systems
+	memory managements
+	drivers
+	UI management
+	multi-tasking
+	networking
+    security 
+
+The OS classes:
+1) Math provides mathematics functions like absolute value and multiply. 
+2) Memory contains functions that access the RAM. 
+3) Screen contains functions that can draw polygons.
+4) Output will write text on the screen.
+5) Keyboard interacts with the user.
+6) String provides string processing services like Java's.
+7) Array provides array processing services, but arrays are very similar to 
+   objects.
+8) Sys provides some useful algorithms.

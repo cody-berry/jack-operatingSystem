@@ -1,0 +1,188 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Screen.jack
+
+/**
+ * A library of functions for displaying graphics on the screen.
+ * The Hack physical screen consists of 256 rows (indexed 0..255, top to bottom)
+ * of 512 pixels each (indexed 0..511, left to right). The top left pixel on 
+ * the screen is indexed (0,0).
+ */
+class Screen {
+    static boolean color; // white is false and black is true
+    static Array twoToThe; 
+
+    /** Initializes the Screen. */
+    function void init() {
+        let color = true;
+
+        // twoToThe is an array, but 2048 is the base address of twoToThe in
+        // Math. 
+        let twoToThe = 2048; 
+        return;
+    }
+
+    /** Erases the entire screen. */
+    function void clearScreen() {
+        var int address;
+
+        // iterate through each address from 16384 to 24575
+        let address = 16384;
+        while (address < 24576) {
+            do Memory.poke(address, 0);
+            let address = address + 1;
+        }
+
+        return;
+    }
+
+    /** Sets the current color, to be used for all subsequent drawXXX commands.
+     *  Black is represented by true, white by false. */
+    function void setColor(boolean b) {
+        let color = b;
+        return;
+    }
+
+    /** Draws the (x,y) pixel, using the current color. */
+    function void drawPixel(int x, int y) {
+        var int address, value, partOfWord, power, appropriateBit, xOverSixteen;
+
+        // we use x/16 2 times and x/16 takes a lot of time to calculate.
+        let xOverSixteen = x/16;
+
+        // determine the address
+        let address = y;
+        let address = address + address; // more efficient than 32*y
+        let address = address + address;
+        let address = address + address;
+        let address = address + address;
+        let address = address + address;
+        let address = address + xOverSixteen + 16384;
+
+        // determine the value of the word in the screen
+        let value = Memory.peek(address);
+
+        // use the or/not operator(s) to set the (x % 16)ᵗʰ bit of value
+        // to the current color
+        let partOfWord = xOverSixteen; // more efficient than (x/16)*16
+        let partOfWord = partOfWord + partOfWord; 
+        let partOfWord = partOfWord + partOfWord; 
+        let partOfWord = partOfWord + partOfWord; 
+        let partOfWord = partOfWord + partOfWord; 
+        let partOfWord = (x) - partOfWord;
+        let appropriateBit = twoToThe[partOfWord];
+
+        if (color) {
+            let value = value | appropriateBit; // turns the pixel on
+        } else {
+            let value = value & ~appropriateBit; // turns the pixel off
+        }
+
+        // now poke the value into the address
+        do Memory.poke(address, value);
+
+        return;
+    }
+
+    /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
+    function void drawLine(int x1, int y1, int x2, int y2) {
+        var int a, b, diff, dy, dx, temp;
+        // set a, b, and diff to 0
+        let a = 0;
+        let b = 0;
+        let diff = 0;
+
+        // swap positions if x2 is less than x1
+        if (x2 < x1) {
+            let temp = x2;
+            let x2 = x1;
+            let x1 = temp;
+            let temp = y2;
+            let y2 = y1;
+            let y1 = temp;
+        }
+
+        // set dy and dx to the distances
+        // reverse dy if it is negative
+        let dy = y2 - y1;
+        if (dy < 0) {
+            let dy = -dy;
+        }
+        let dx = x2 - x1;
+
+        // are we going southeast or northeast?
+        if (y2 > y1) {
+            // while we're not done...
+            while (((a < dx) | (a = dx)) & ((b < dy) | (b = dy))) {
+                // draw the pixel
+                do Screen.drawPixel(x1 + a, y1 + b);
+    
+                // decide whether to go right or up
+                if (diff < 0) {let a = a + 1; let diff = diff + dy;}
+                if (diff > 0) {let b = b + 1; let diff = diff - dx;}
+                if (diff = 0) {
+                    if ((dy - b) > (dx - a)) {let b = b + 1; let diff = diff - dx;}
+                    else                     {let a = a + 1; let diff = diff + dy;}
+                }
+            }
+        } else {
+            // while we're not done...
+            while (((a < dx) | (a = dx)) & ((b < dy) | (b = dy))) {
+                // draw the pixel
+                do Screen.drawPixel(x1 + a, y1 - b);
+    
+                // decide whether to go right or up
+                if (diff < 0) {let a = a + 1; let diff = diff + dy;}
+                if (diff > 0) {let b = b + 1; let diff = diff - dx;}
+                if (diff = 0) {
+                    if ((dy - b) > (dx - a)) {let b = b + 1; let diff = diff - dx;}
+                    else                     {let a = a + 1; let diff = diff + dy;}
+                }
+            }
+        }
+
+        return;
+    }
+
+    /** Draws a filled rectangle whose top left corner is (x1, y1)
+     * and bottom right corner is (x2,y2), using the current color. */
+    function void drawRectangle(int x1, int y1, int x2, int y2) {
+        var int x, y;
+        // iterate through all ys.
+        let y = y1;
+        while ((y < y2) | (y = y2)) {
+            // iterate through all xs. 
+            let x = x1;
+            while ((x < x2) | (x = x2)) {
+                // draw the pixel.
+                do Screen.drawPixel(x, y);
+                let x = x + 1;
+            }
+            let y = y + 1;
+        }
+        return;
+    }
+
+    /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
+    function void drawCircle(int x, int y, int r) {
+        var int dy;
+        // while the difference in y is less than r...
+        let dy = -r;
+        while ((dy < r) | (dy = r)) {
+            // draw a line with a y-coordinate of y + the difference in y
+            // and use the Pythagorean Theorem to calculte the 
+            // x-coordinate
+            do Screen.drawLine(
+                    x - Math.sqrt((r*r) - (dy*dy)), 
+                    y + dy, 
+                    x + Math.sqrt((r*r) - (dy*dy)), 
+                    y + dy
+                );
+
+            let dy = dy + 1;
+        }
+
+        return;
+    }
+}

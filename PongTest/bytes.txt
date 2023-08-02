@@ -1,0 +1,12 @@
+Math:
+	Multiply: Multiply binary! Old school way.
+	Sqrt: Binary search and use x*x to see if it is less or greater than the answer.
+	Division: Take 100/7. That's 2*50/7, or 4*25/7, or 8*12/7, and you get the picture. This might be bad, though. 16*6/7, 32*3/7, and just divide!
+Memory:
+	Use a Ram array, setting it to 0. You can now address the entire Ram.
+	For Alloc and deAlloc, create a free mechanism with linked lists for the free segments.
+Graphics: 
+	Circles use repetitive lines. Lines use repetitive pixels. Pixels use a complex algorithm.
+
+
+

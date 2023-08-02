@@ -69,7 +69,6 @@ class Math {
 
             let i = i + 1;
         }
-        do Output.println();
 
         // return the result
         return sum;
@@ -132,48 +131,51 @@ class Math {
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-        var int lowerBound, upperBound, middleBound, iterations;
+        var int lowerBound, upperBound, average, iterations, averageSquared;
         // Initialize:
         // Lower bound is 0
         let lowerBound = 0;
 
-        // Upper bound is minimum of x and 181
+        // Upper bound is minimum of x and 182
         let upperBound = Math.min(x, 182);
 
-        // Middle bound is average of lower bound and upper bound
-        let middleBound = (lowerBound + upperBound)/2;
+        // average is average of lower bound and upper bound squared
+        let average = (lowerBound + upperBound)/2;
 
         // End of initialization
         // Repeat the following forever:
         while (true) {
-            // If the middle bound squared is less than the target bound, 
-            // the target bound cannot be less than what is now the left bound,
-            // or the middle bound
-            if (middleBound*middleBound < x) {
-                let lowerBound = middleBound;
-            }
-
-            // If the middle bound squared is greater than the target bound, 
-            // the target bound cannot be greater than what is now the upper
-            // bound, or the middle bound
-            if (middleBound*middleBound > x) {
-                let upperBound = middleBound;
-            }
-
-            // If the middle bound squared is equal to the target bound, return 
-            // the middle bound, the square root of x
-            if (middleBound*middleBound = x) {
-                return middleBound;
-            }
-
             // If the upper bound minus the lower bound is 1 or less, the square 
             // root must be the lower bound because we would've known that it was
             // the upper bound while we were moving the upper bound
             if (upperBound - lowerBound < 2) {
                 return lowerBound;
             }
-            // Set the middleBound to the average of lowerBound and upperBound
-            let middleBound = (lowerBound + upperBound)/2;
+
+            let averageSquared = averageSquared * averageSquared;
+
+            // If the middle bound squared is less than the target bound, 
+            // the target bound cannot be less than what is now the left bound,
+            // or the middle bound
+            if (averageSquared < x) {
+                let lowerBound = average;
+            }
+
+            // If the middle bound squared is greater than the target bound, 
+            // the target bound cannot be greater than what is now the upper
+            // bound, or the middle bound
+            if (averageSquared > x) {
+                let upperBound = average;
+            }
+
+            // If the middle bound squared is equal to the target bound, return 
+            // the middle bound, the square root of x
+            if (averageSquared = x) {
+                return average;
+            }
+
+            // Set the average to the average of lowerBound and upperBound
+            let average = (lowerBound + upperBound)/2;
         }
         // There's no need to return at the end because we're repeating forever, 
         // but we must to prevent compilation errors.

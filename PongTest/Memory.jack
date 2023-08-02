@@ -1,0 +1,79 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Memory.jack
+
+/**
+ * This library provides two services: direct access to the computer's main
+ * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
+ * consists of 32,768 words, each holding a 16-bit binary number.
+ */ 
+class Memory {
+    static Array ram;
+    static int freeList;
+
+    /** Initializes the class. */
+    function void init() {
+        // most other languages don't allow this, but Jack has weak typing.
+        // this lets us set the base address of ram to 0. 
+        let ram = 0; 
+        let freeList = 2048;
+        return;
+    }
+
+    /** Returns the RAM value at the given address. */
+    function int peek(int address) {
+        return ram[address];
+    }
+
+    /** Sets the RAM value at the given address to the given value. */
+    function void poke(int address, int value) {
+        let ram[address] = value;
+        return;
+    }
+
+    /** Finds an available RAM block of the given size and returns
+     *  a reference to its base address. */
+    function int alloc(int size) {
+        // var int nextBaseAddress, previousBaseAddress;
+
+        // // iterate through the free list by accessing heap[1] and following
+        // // the ram. search for a block with size + 2.
+        // let nextBaseAddress = freeList;
+        // let previousBaseAddress = 0;
+
+        // while (nextBaseAddress > 0) {
+        //     // start with the next base address.
+        //     // if the length is size + 2 or greater, return that block.
+        //     if (Memory.peek(nextBaseAddress + 1) > (size + 1)) {
+        //         if (previousBaseAddress > 0) {
+        //             do Memory.poke(previousBaseAddress, nextBaseAddress + size);
+        //         } else {
+        //             let freeList = freeList + size;
+        //         }
+
+        //         let ram[nextBaseAddress + size] = ram[nextBaseAddress];
+        //         let ram[nextBaseAddress + size + 1] = ram[nextBaseAddress + 1] - size;
+        //         let ram[nextBaseAddress] = 0;
+        //         let ram[nextBaseAddress + 1] = 0;
+        //         return nextBaseAddress;
+        //     }
+            
+        //     let previousBaseAddress = nextBaseAddress;
+        //     let nextBaseAddress = Memory.peek(nextBaseAddress);
+        // }
+
+        // return 0;
+
+        // do a normal increment: block is freeList, freeList is increased by size,
+        // then return the block
+        let freeList = freeList + size;
+        return freeList - size;
+    }
+
+    /** De-allocates the given object (cast as an array) by making
+     *  it available for future allocations. */
+    function void deAlloc(Array o) {
+        return;
+    }    
+}
